@@ -2,6 +2,8 @@
 session_start();
 include ("inc/config.php");
 include ("inc/common.php");
+//error_reporting(E_STRICT |E_ALL | E_DEPRECATED);
+ini_set("display_errors", 0);
 
 $action=get_param("action");
 $page=get_param("page");
@@ -96,7 +98,10 @@ function Load_business() {
 	
 		}
 		$info=$db->getrow("Select * from businesses where id=$id");
-	}}
+	}
+	$smarty->assign("types",$db->getassoc("Select id,name from types"));
+	}
+	
 function Ajax_Get_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
