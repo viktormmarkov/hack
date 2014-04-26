@@ -22,6 +22,7 @@ if ($page == "get_tables") Ajax_get_tables();
 
 $smarty->assign('id', $id);
 $smarty->assign('page', $page);
+$smarty->assign('user_info', $_SESSION['user_info']);
 $smarty->assign('action', $action);
 $smarty->assign('error', $error); 
 $smarty->assign('result', $result);
@@ -45,8 +46,6 @@ function Ajax_Register_user() {
 		   $data["success"]=1;
 
 	}
-	else $data["success"]=0;
-	echo json_encode ($data);
 
 
 }
@@ -57,8 +56,9 @@ function Ajax_Login(){
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $page, $action;
-
-		$rs2=$db->getrow("select * from users where lcase(email)=lcase('$email') and password='$password' and id=".$rs["id"]);
+	$username=get_param("username");
+	$password=get_param("password");
+		$rs2=$db->getrow("select * from users where lcase(username)=lcase('$username') and password='$password'");
 		if (!$rs2) $data['success']=0;
 		else {
 			$_SESSION['user_info']=$rs2;
@@ -66,7 +66,6 @@ function Ajax_Login(){
 		}
 
 
-	echo json_encode ($_SESSION['user_info']);
 
 	}
 
@@ -74,28 +73,29 @@ function Load_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $page, $action,$id;
-	
 	if($action=='edit') {
 		$name=get_param("name");
 		$lat=get_param("lat");
 		$lon=get_param("lon");
 		$description=get_param("description");
-		$uid=$_SESSION['user_info']['id'];
+		$uid=$_SESSION['user_info']['id']?$_SESSION['user_info']['id'] : 1;
 		$type=get_param("type");
 		$hour=get_param("hour");
 		if(!$id) {
 			$db->execute("Insert into businesses (user_id) values ($uid)");
+			$id=$db->insert_id("businesses","id");
 		}
 		if($id) {
 			$photo=$_FILES['photo']['tmp_name'];	
 			if($photo) {
 					if(file_exists("uploads/".$id."_map.jpg"))unlink ("uploads/".$id."_map.jpg");
 					$file="uploads/".$id."_map.jpg";
+					echo $file;
 					move_uploaded_file($photo,  $file);
-					exec("convert $file -resize '468x' +repage  $file");
 				}
-			$db->execute ("Update businesses set name='$name', lat='$lat', lon='$lon', description='&description', $type='$type', hour='$hour', img='$file' where id=$id");
-	
+			$db->execute ("Update businesses set name='$name', lat='$lat', lon='$lon', description='".$description."', type_id='$type', hour='$hour', img='$file' where id=$id");
+		$page='';
+		$result="Successfully saved";
 		}
 		$info=$db->getrow("Select * from businesses where id=$id");
 	}
