@@ -4,17 +4,26 @@ include ("inc/config.php");
 include ("inc/common.php");
 
 $action=get_param("action");
+$page=get_param("page");
+$action = get_param("action");
 
-if($action == "reg_user") Ajax_Register_user();
-if($action == "login") Ajax_Login();
-if($action == "logout") Ajax_Logout();
-if ($action == "save_business") Ajax_Save_business();
-if ($action == "get_business") Ajax_Get_business();
-if ($action == "save_table") Ajax_save_table();
-if ($action == "save_reserve") Ajax_save_reserve();
-if ($action == "get_reserve") Ajax_get_reserve();
-if ($action == "get_tables") Ajax_get_tables();
+if($page == "register") Ajax_Register_user();
+if($page == "login") Ajax_Login();
+if($page == "logout") Ajax_Logout();
+if ($page == "business") Load_business();
+if ($page == "get_business") Ajax_Get_business();
+if ($page == "save_table") Ajax_save_table();
+if ($page == "save_reserve") Ajax_save_reserve();
+if ($page == "get_reserve") Ajax_get_reserve();
+if ($page == "get_tables") Ajax_get_tables();
 
+$smarty->assign('page', $page);
+$smarty->assign('action', $action);
+$smarty->assign('error', $error); 
+$smarty->assign('result', $result);
+
+$smarty->display('index.tpl');	
+ 
 function Ajax_Register_user() {
 	global $db, $smarty, $lang;
 	global $result, $error;
@@ -57,34 +66,36 @@ function Ajax_Login(){
 
 	}
 
-function Ajax_Save_business() {
+function Load_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $page, $action;
-
-	$name=get_param("name");
-	$lat=get_param("lat");
-	$lon=get_param("lon");
-	$description=get_param("description");
-	$uid=$_SESSION['user_info']['id'];
-	$type=get_param("type");
-	$hour=get_param("hour");
-	$id=get_param("id");
-	if(!$id) {
-	    $db->execute("Insert into businesses (user_id) values ($uid)");
-	}
-	if($id) {
-		$photo=$_FILES['photo']['tmp_name'];	
-		if($photo) {
-				if(file_exists("uploads/".$id."_map.jpg"))unlink ("uploads/".$id."_map.jpg");
-				$file="uploads/".$id."_map.jpg";
-				move_uploaded_file($photo,  $file);
-				exec("convert $file -resize '468x' +repage  $file");
-			}
-	    $db->execute ("Update businesses set name='$name', lat='$lat', lon='$lon', description='&description', $type='$type', hour='$hour', img='$file' where id=$id");
-
-	}
-	}
+	
+	if($action=='edit') {
+		$name=get_param("name");
+		$lat=get_param("lat");
+		$lon=get_param("lon");
+		$description=get_param("description");
+		$uid=$_SESSION['user_info']['id'];
+		$type=get_param("type");
+		$hour=get_param("hour");
+		$id=get_param("id");
+		if(!$id) {
+			$db->execute("Insert into businesses (user_id) values ($uid)");
+		}
+		if($id) {
+			$photo=$_FILES['photo']['tmp_name'];	
+			if($photo) {
+					if(file_exists("uploads/".$id."_map.jpg"))unlink ("uploads/".$id."_map.jpg");
+					$file="uploads/".$id."_map.jpg";
+					move_uploaded_file($photo,  $file);
+					exec("convert $file -resize '468x' +repage  $file");
+				}
+			$db->execute ("Update businesses set name='$name', lat='$lat', lon='$lon', description='&description', $type='$type', hour='$hour', img='$file' where id=$id");
+	
+		}
+		$info=$db->getrow("Select * from businesses where id=$id");
+	}}
 function Ajax_Get_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;

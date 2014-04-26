@@ -15,4 +15,18 @@ $ADODB_FETCH_MODE  = ADODB_FETCH_ASSOC;
 $ADODB_FORCE_TYPE = ADODB_FORCE_EMPTY;
 $db->Execute("set names 'utf8'");
 
+// Include Smarty Class
+require root.'/lib/smarty/libs/Smarty.class.php';
+$smarty = new Smarty;
+$smarty->addPluginsDir( 'inc/my_smarty');
+
+$smarty->debugging = false;
+$smarty->caching = false;
+
+// Include Mail Class
+
+
+
+define("CONFIG_HOST","localhost/hackfmi/app"); // FULL SITE NAME
+$smarty->Assign('CONFIG_HOST', CONFIG_HOST);
 ?>
