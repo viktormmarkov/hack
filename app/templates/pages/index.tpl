@@ -34,6 +34,7 @@
 	data: {action:'get_business'},
 	dataType: "json",
 	success: function(data){
+	    console.log(data);
 		for(var i = 0, object; object = data[i]; i++){
 			console.log(object);
 			console.log(object.lat, object.lon);
