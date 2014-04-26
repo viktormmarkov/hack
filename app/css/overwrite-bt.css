@@ -37,10 +37,26 @@ body {
     padding: 10px;
 }
 
-.form-control {
-    width: 100%;
-}
-
 .col-lg-12 {
     padding:0 !important;
+}
+
+.well {
+    background-color: #0052a4;
+}
+.form-control-inline{
+    display:inline-block !important;
+    width:100%;
+
+}
+.form-control-inline{
+}
+
+.form-group.inline {
+    padding-left: 0;
+    display:inline-block !important;
+}
+
+.my-extended {
+    width: 100% !important;
 }
