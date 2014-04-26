@@ -149,5 +149,13 @@ function Ajax_get_reserve() {
 	echo json_encode ($rs);	
 
 }
-
+function Ajax_get_tables() {
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $page, $action;
+	
+	$business_id=get_param("business_id");
+	$rs=$db->getall("Select * from tables where business_id=$business_id");
+	echo json_encode ($rs);	
+}
 ?>
