@@ -15,9 +15,9 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
+          {if $user_info}<ul class="nav navbar-nav">
             <li>
-                {if $user_info} <a href="?page=business">biznes</a> | <a href="?page=business">biznes</a> | {/if}
+                 <a href="?page=business">biznes</a> 
             </li>
             <li>
                 <a href="#">ala bala</a>
@@ -29,10 +29,11 @@
                 <input type="text" class="form-control col-lg-8" placeholder="Search">
             </form>
           </ul>
+         {else}
           <ul class="nav navbar-nav navbar-right">
             <li><a href="http://builtwithbootstrap.com/" target="_blank">Register</a></li>
             <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a></li>
-          </ul>
+          </ul> {/if}
         </div>
       </div>
 </div>
