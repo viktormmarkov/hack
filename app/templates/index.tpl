@@ -57,18 +57,7 @@
 
 <div id="page-loader"><span class="glyphicon glyphicon-cog fa-spin cog-1"></span></div>
 
-<!-- End: Front Page Loading Animation --> 
-
-<!-- Core Javascript - via CDN -->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/flot/0.8.1/jquery.flot.min.js"></script>
-
-
-
+<!-- End: Front Page Loading Animation -->
 
 </body>
 
