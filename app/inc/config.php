@@ -1,9 +1,7 @@
 <?php
 
-define('root', $_SERVER['DOCUMENT_ROOT']);
-
 // Include DB Class
-require_once(root.'/lib/adodb/adodb.inc.php');
+require_once('/lib/adodb/adodb.inc.php');
 define('CONFIG_DB_SERVER', 'localhost'); // DB SERVER
 define("CONFIG_DB_USER",'root'); // DB USERNAME
 define('CONFIG_DB_PASSWORD', ''); // DB PASSWORD
@@ -16,7 +14,7 @@ $ADODB_FORCE_TYPE = ADODB_FORCE_EMPTY;
 $db->Execute("set names 'utf8'");
 
 // Include Smarty Class
-require root.'/lib/smarty/libs/Smarty.class.php';
+require_once ('/lib/smarty/libs/Smarty.class.php');
 $smarty = new Smarty;
 $smarty->addPluginsDir( 'inc/my_smarty');
 
@@ -24,7 +22,6 @@ $smarty->debugging = false;
 $smarty->caching = false;
 
 // Include Mail Class
-
 
 
 define("CONFIG_HOST","localhost/hackfmi/app"); // FULL SITE NAME
