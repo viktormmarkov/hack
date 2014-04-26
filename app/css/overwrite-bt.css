@@ -40,3 +40,7 @@ body {
 .form-control {
     width: 100%;
 }
+
+.col-lg-12 {
+    padding:0 !important;
+}
