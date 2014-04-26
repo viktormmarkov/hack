@@ -6,6 +6,7 @@ include ("inc/common.php");
 $action=get_param("action");
 $page=get_param("page");
 $action = get_param("action");
+$id = get_param("id");
 
 if($page == "register") Ajax_Register_user();
 if($page == "login") Ajax_Login();
@@ -17,6 +18,7 @@ if ($page == "save_reserve") Ajax_save_reserve();
 if ($page == "get_reserve") Ajax_get_reserve();
 if ($page == "get_tables") Ajax_get_tables();
 
+$smarty->assign('id', $id);
 $smarty->assign('page', $page);
 $smarty->assign('action', $action);
 $smarty->assign('error', $error); 
@@ -69,7 +71,7 @@ function Ajax_Login(){
 function Load_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
+	global $page, $action,$id;
 	
 	if($action=='edit') {
 		$name=get_param("name");
@@ -79,7 +81,6 @@ function Load_business() {
 		$uid=$_SESSION['user_info']['id'];
 		$type=get_param("type");
 		$hour=get_param("hour");
-		$id=get_param("id");
 		if(!$id) {
 			$db->execute("Insert into businesses (user_id) values ($uid)");
 		}
@@ -99,7 +100,7 @@ function Load_business() {
 function Ajax_Get_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
+	global $page, $action,$id;
 	
 	$type=get_param("type");
 	$name=get_param("name");
@@ -115,28 +116,28 @@ function Ajax_Get_business() {
 function Ajax_save_table() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
-	
-	$business_id=get_param("business_id");
-	$description=get_param("description");
-	$x1=get_param("x1");
-	$x2=get_param("x2");
-	$y1=get_param("y1");
-	$y2=get_param("y2");
-	$db->execute("Delete from tables where business_id=$business_id");
-	for($i=0;$description[$i];$i++) {
-		$db->execute("insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$description[$i]."','".$x1[$i]."','".$x2[$i]."',,'".$y1[$i]."','".$y2[$i]."')");
-	
-		
+	global $page, $action,$id;
+	$save=get_param("save");
+	if($save) {
+		$business_id=get_param("business_id");
+		$description=get_param("description");
+		$x1=get_param("x1");
+		$x2=get_param("x2");
+		$y1=get_param("y1");
+		$y2=get_param("y2");
+		$db->execute("Delete from tables where business_id=$business_id");
+		for($i=0;$description[$i];$i++) {
+			$db->execute("insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$description[$i]."','".$x1[$i]."','".$x2[$i]."',,'".$y1[$i]."','".$y2[$i]."')");
+		}
 	}
-	$data["success"]=1;
-	echo json_encode ($data);	
+	
 }
 function Ajax_save_reserve() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
-	
+	global $page, $action,$id;
+	$save=get_param("save");
+	if($save) {
 	$business_id=get_param("business_id");
 	$table_id=get_param("table_id");
 	$date=get_param("date");
@@ -147,13 +148,12 @@ function Ajax_save_reserve() {
 	$email=get_param("email");
 		$db->execute("insert into reserve (business_id,table_id,date,time,p_count,name,phone,email) values ($business_id,$table_id,'$date','$time','$p_count','$name','$phone','$email')");
 	
-	$data["success"]=1;
-	echo json_encode ($data);	
+	}
 }
 function Ajax_get_reserve() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
+	global $page, $action,$id;
 	
 	$business_id=get_param("business_id");
 	$rs=$db->getall("Select * from reserve where business_id=$business_id");
@@ -163,7 +163,7 @@ function Ajax_get_reserve() {
 function Ajax_get_tables() {
 	global $db, $smarty, $lang;
 	global $result, $error;
-	global $page, $action;
+	global $page, $action,$id;
 	
 	$business_id=get_param("business_id");
 	$rs=$db->getall("Select * from tables where business_id=$business_id");
