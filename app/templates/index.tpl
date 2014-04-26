@@ -7,7 +7,7 @@
 <div class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-          <a href="../" class="navbar-brand">Project Name</a>
+          <a href="/hack/app" class="navbar-brand">Make It Big</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -15,25 +15,25 @@
           </button>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
-          {if $user_info}<ul class="nav navbar-nav">
-            <li>
-                 <a href="?page=business">biznes</a> 
-            </li>
-            <li>
-                <a href="#">ala bala</a>
-            </li>
-            <li>
-                <a href="#">lutenica</a>
-            </li>
-            <form class="navbar-form navbar-left">
-                <input type="text" class="form-control col-lg-8" placeholder="Search">
-            </form>
-          </ul>
+        {if $user_info}
+              <ul class="nav navbar-nav">
+                <li>
+                     <a href="?page=business">Create Business</a>
+                </li>
+                <li>
+                <form class="navbar-form navbar-left">
+                    <input type="text" class="form-control col-lg-8" placeholder="Search place">
+                </form>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                  <li><a href="?page=logout">Logout</a></li>
+                </ul>
          {else}
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="http://builtwithbootstrap.com/" target="_blank">Register</a></li>
-            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a></li>
-          </ul> {/if}
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="?page=register">Register</a></li>
+                <li><a href="?page=login">Login</a></li>
+              </ul>
+          {/if}
         </div>
       </div>
 </div>
