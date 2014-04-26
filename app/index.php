@@ -20,6 +20,7 @@ if ($page == "save_reserve") Ajax_save_reserve();
 if ($page == "get_reserve") Ajax_get_reserve();
 if ($page == "get_tables") Ajax_get_tables();
 
+$smarty->assign('notifications', $db->getall("Select reserve.* from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
 $smarty->assign('id', $id);
 $smarty->assign('page', $page);
 $smarty->assign('user_info', $_SESSION['user_info']);
@@ -146,13 +147,13 @@ function Ajax_save_reserve() {
 	$business_id=get_param("business_id");
 	$table_id=get_param("table_id");
 	$date=get_param("date");
-	$time=get_param("time");
+	$hour=get_param("hour");
 	$p_count=get_param("p_count");
 	$name=get_param("name");
 	$phone=get_param("phone");
 	$email=get_param("email");
-		$db->execute("insert into reserve (business_id,table_id,date,time,p_count,name,phone,email) values ($business_id,$table_id,'$date','$time','$p_count','$name','$phone','$email')");
-	
+		$db->execute("insert into reserve (business_id,table_id,date,hour,p_count,name,phone,email) values ($business_id,'$table_id','$date','$hour','$p_count','$name','$phone','$email')");
+	print_r("insert into reserve (business_id,table_id,date,time,p_count,name,phone,email) values ($business_id,'$table_id','$date','$time','$p_count','$name','$phone','$email')");
 	}
 }
 function Ajax_get_reserve() {
