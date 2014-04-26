@@ -10,9 +10,24 @@
       };
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
+		  get_marks();
     }
 
+	function get_marks()  {
+	$.ajax({type: "POST",
+	url: 'ajax.php',
+	data: {action:'get_business'},
+	dataType: "json",
+	success: function(data){
+		
+	},error: function (jqXHR, textStatus, errorThrown) {
+	console.log(textStatus);
+	console.log(errorThrown);
+	}
+});
 
+  }
+  
     google.maps.event.addDomListener(window, 'load', initialize);
 
 

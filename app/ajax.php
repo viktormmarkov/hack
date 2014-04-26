@@ -89,7 +89,6 @@ function Ajax_Get_business() {
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $page, $action;
-	
 	$type=get_param("type");
 	$name=get_param("name");
 	$where='';
