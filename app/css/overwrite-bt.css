@@ -32,3 +32,11 @@
 body {
     background-color: #0052a4;
 }
+
+.form {
+    padding: 10px;
+}
+
+.form-control {
+    width: 100%;
+}
