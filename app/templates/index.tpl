@@ -39,22 +39,9 @@
 
       {if !$page} {include file='pages/index.tpl'} {/if}
 
-      {if $page eq 'right' and $user_r.right_view} {include file='pages/right.tpl'} {/if}
+      {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
 
-      {if $page eq 'games'} {include file='pages/games.tpl'} {/if}
-
-      {if $page eq 'users' and $user_r.view_users} {include file='pages/users.tpl'} {/if}
-
-      {if $page eq 'games_panel' and $user_r.view_game} {include file='pages/games_panel.tpl'} {/if}
-
-      {if $page eq 'questions' and $user_r.view_questions} {include file='pages/questions.tpl'} {/if}
-
-      {if $page eq 'profile'} {include file='pages/profile.tpl'} {/if}
-
-      {if $page eq 'winners'} {include file='pages/winners.tpl'} {/if}
-
-      {if $page eq 'game'} {include file='pages/game.tpl'} {/if}
-
+      
             
 
 
