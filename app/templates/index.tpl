@@ -33,18 +33,13 @@
 
   <section id="content">
 
-  
 
-    <div class="container">
+
+    <div class="wrapper">
 
       {if !$page} {include file='pages/index.tpl'} {/if}
 
       {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
-
-      
-            
-
-
 
     </div>
 
@@ -69,8 +64,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-
-<script src="{$CONFIG_HOST}/js/bootstrap.min.js"></script> <!-- Plugins - Via CDN -->
 
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/flot/0.8.1/jquery.flot.min.js"></script>
 
