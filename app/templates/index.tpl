@@ -42,6 +42,7 @@
       <div class="col-lg-12">
             {if !$page} {include file='pages/index.tpl'} {/if}
             {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
+            {if $page eq 'tables'} {include file='pages/tables.tpl'} {/if}
       </div>
     </div>
 </div>

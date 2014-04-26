@@ -12,7 +12,7 @@ if($action == "login") Ajax_Login();
 if($action == "logout") Ajax_Logout();
 if ($action == "save_business") Ajax_Save_business();
 if ($action == "get_business") Ajax_Get_business();
-if ($action == "save_table") Ajax_save_table();
+if ($action == "save_tables") Ajax_save_table();
 if ($action == "save_reserve") Ajax_save_reserve();
 if ($action == "get_reserve") Ajax_get_reserve();
 if ($action == "get_tables") Ajax_get_tables();
@@ -106,12 +106,13 @@ function Ajax_save_table() {
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $page, $action;
-	
-	$business_id=get_param("business_id");
+	echo json_encode ($data);
+	$business_id=get_param("business_id")?get_param("business_id") : 1;
 	$object=get_param("data");
+	$db->execute("Delete from tables where business_id=$business_id");
 	for($i=0;$object[$i];$i++) {
 		$db->execute("insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$object[$i]['description']."','".$object[$i]['x1']."','".$object[$i]['x2']."','".$object[$i]['y1']."','".$object[$i]['y2']."')");
-	
+	    $data[$i]['sql']="insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$object[$i]['description']."','".$object[$i]['x1']."','".$object[$i]['x2']."','".$object[$i]['y1']."','".$object[$i]['y2']."')";
 		
 	}
 	$data["success"]=1;
@@ -152,6 +153,6 @@ function Ajax_get_tables() {
 	
 	$business_id=get_param("business_id");
 	$rs=$db->getall("Select * from tables where business_id=$business_id");
-	echo json_encode ($rs);	
+	echo json_encode ($rs);
 }
 ?>
