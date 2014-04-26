@@ -34,7 +34,7 @@
   <section id="content">
 
 
-
+{if $user_info} <a href="?page=business">biznes</a> | <a href="?page=business">biznes</a> | {/if}
     <div class="wrapper">
 
       {if !$page} {include file='pages/index.tpl'} {/if}
