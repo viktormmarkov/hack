@@ -18,7 +18,7 @@
 <label>image</label><br />
 <input type="file" name="photo"/><br />
 <input type="hidden" name="page" value="{$page}" />
-<input type="hidden" name="action" value="{$action}" />
+<input type="hidden" name="action" value="edit" />
 <input type="hidden" name="id" value="{$id}" />
 <input type="submit" name="save" value="Save" />
 </form>
