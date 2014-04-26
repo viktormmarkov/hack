@@ -12,7 +12,7 @@
           mapOptions);
 		  get_marks();
     }
-<<<<<<< HEAD
+
 
 	function get_marks()  {
 	$.ajax({type: "POST",
@@ -29,9 +29,8 @@
 
   }
   
-=======
+
     console.log(map);
->>>>>>> 247d87ff96b98bb35e584c340d74efb7500b61f8
     google.maps.event.addDomListener(window, 'load', initialize);
 
     for(var i = 0; i <4; i++)
