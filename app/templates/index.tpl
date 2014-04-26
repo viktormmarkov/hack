@@ -14,7 +14,7 @@
 
 
 <!-- Start: Header -->
-{if $user_info} <a href="?page=business">biznes</a> | <a href="?page=business">biznes</a> | {/if}
+{if $user_info} <a href="?page=business">biznes</a> | <a href="?page=business">biznes</a> | <a href="?page=notifications">biznes</a> {/if}
 
 
 <!-- End: Header --> 
@@ -51,6 +51,8 @@
       {if !$page} {include file='pages/index.tpl'} {/if}
 
       {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
+      
+      {if $page eq 'notifications'} {include file='pages/notifications.tpl'}{/if}
 
     </div>
 

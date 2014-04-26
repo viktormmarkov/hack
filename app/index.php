@@ -153,8 +153,7 @@ function Ajax_save_reserve() {
 	$phone=get_param("phone");
 	$email=get_param("email");
 		$db->execute("insert into reserve (business_id,table_id,date,hour,p_count,name,phone,email) values ($business_id,'$table_id','$date','$hour','$p_count','$name','$phone','$email')");
-	print_r("insert into reserve (business_id,table_id,date,time,p_count,name,phone,email) values ($business_id,'$table_id','$date','$time','$p_count','$name','$phone','$email')");
-	}
+$page='';	}
 }
 function Ajax_get_reserve() {
 	global $db, $smarty, $lang;
