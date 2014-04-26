@@ -108,14 +108,9 @@ function Ajax_save_table() {
 	global $page, $action;
 	
 	$business_id=get_param("business_id");
-	$description=get_param("description");
-	$x1=get_param("x1");
-	$x2=get_param("x2");
-	$y1=get_param("y1");
-	$y2=get_param("y2");
-	$db->execute("Delete from tables where business_id=$business_id");
-	for($i=0;$description[$i];$i++) {
-		$db->execute("insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$description[$i]."','".$x1[$i]."','".$x2[$i]."',,'".$y1[$i]."','".$y2[$i]."')");
+	$object=get_param("data");
+	for($i=0;$object[$i];$i++) {
+		$db->execute("insert into tables (business_id,description,x1,x2,y1,y2) values ($business_id,'".$object[$i]['description']."','".$object[$i]['x1']."','".$object[$i]['x2']."','".$object[$i]['y1']."','".$object[$i]['y2']."')");
 	
 		
 	}

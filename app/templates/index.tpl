@@ -1,80 +1,49 @@
 <!DOCTYPE html>
-
-
-<html class="no-js" dir="ltr" lang="bg"><!--<![endif]-->
-
+<html class="no-js" dir="ltr" lang="bg">
 <head>
-
-{include file='head.tpl'}
-
+    {include file='head.tpl'}
 </head>
-
-<body class="dashboard"> 
-
-
-
-<!-- Start: Header -->
-{if $user_info} <a href="?page=business">biznes</a> | <a href="?page=business">biznes</a> | {/if}
-
-
-<!-- End: Header --> 
-
-<!-- Start: Main -->
-
-<div id="main"> 
-
-  <!-- Start: Sidebar -->
-
-
-  <!-- End: Sidebar --> 
-
-  <!-- Start: Content -->
-
-  <section id="content">
-
-
-    <div class="wrapper">
-	<div style="display:none" id="reservation">
-    	<form method="post">
-        	<input type="text" name="date" class="datepicker" placeholder="date">
-        	<input type="text" name="hour" class="" placeholder="hour">
-        	<input type="text" name="p_count" class="" placeholder="people count">
-        	<input type="text" name="name" class="" placeholder="name">
-        	<input type="text" name="phone" class="" placeholder="phone">
-        	<input type="text" name="email" class="" placeholder="email">
-            <input type="hidden" name="page" value="save_reserve">
-            <input type="hidden" name="business_id" id="business_id">
-            <input type="submit" name="save" value="Save">
-        
-        </form>
+<body>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+          <a href="../" class="navbar-brand">Project Name</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
         </div>
-      {if !$page} {include file='pages/index.tpl'} {/if}
-
-      {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
-
-      {if $page eq 'tables'} {include file='pages/tables.tpl'} {/if}
-
-    </div>
-
-  </section>
-
-  <!-- End: Content --> 
-
+        <div class="navbar-collapse collapse" id="navbar-main">
+          {if $user_info}<ul class="nav navbar-nav">
+            <li>
+                 <a href="?page=business">biznes</a> 
+            </li>
+            <li>
+                <a href="#">ala bala</a>
+            </li>
+            <li>
+                <a href="#">lutenica</a>
+            </li>
+            <form class="navbar-form navbar-left">
+                <input type="text" class="form-control col-lg-8" placeholder="Search">
+            </form>
+          </ul>
+         {else}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://builtwithbootstrap.com/" target="_blank">Register</a></li>
+            <li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">Login</a></li>
+          </ul> {/if}
+        </div>
+      </div>
 </div>
-
-<!-- End: Main --> 
-
-
-
-<!-- Begin: Front Page Loading Animation --> 
-
-<div id="page-loader"><span class="glyphicon glyphicon-cog fa-spin cog-1"></span></div>
-
-<!-- End: Front Page Loading Animation -->
-
+<div class="wrapper">
+    <div class="row-fluid">
+      <div class="col-lg-12">
+            {if !$page} {include file='pages/index.tpl'} {/if}
+            {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
+      </div>
+    </div>
+</div>
 </body>
-
-
-
 </html>
-

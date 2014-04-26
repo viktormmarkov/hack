@@ -9,7 +9,6 @@ $action=get_param("action");
 $page=get_param("page");
 $action = get_param("action");
 $id = get_param("id");
-
 if($page == "register") Ajax_Register_user();
 if($page == "login") Ajax_Login();
 if($page == "logout") Ajax_Logout();
@@ -65,6 +64,17 @@ function Ajax_Login(){
 			$_SESSION['user_info']=$rs2;
 			$data['success']=1;
 		}
+
+
+
+	}
+function Ajax_Logout(){
+
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $page, $action;
+	$page='';
+	$_SESSION['user_info']='';
 
 
 
@@ -153,8 +163,7 @@ function Ajax_save_reserve() {
 	$phone=get_param("phone");
 	$email=get_param("email");
 		$db->execute("insert into reserve (business_id,table_id,date,hour,p_count,name,phone,email) values ($business_id,'$table_id','$date','$hour','$p_count','$name','$phone','$email')");
-	print_r("insert into reserve (business_id,table_id,date,time,p_count,name,phone,email) values ($business_id,'$table_id','$date','$time','$p_count','$name','$phone','$email')");
-	}
+$page='';	}
 }
 function Ajax_get_reserve() {
 	global $db, $smarty, $lang;
