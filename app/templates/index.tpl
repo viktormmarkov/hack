@@ -34,7 +34,6 @@
   <section id="content">
 
   
-	{if !$user_info} {include file='pages/login.tpl'} {include file='pages/register.tpl'} {/if}
     <div class="container">
 
       {if !$page} {include file='pages/index.tpl'} {/if}
