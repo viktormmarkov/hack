@@ -37,14 +37,11 @@
         </div>
       </div>
 </div>
-<div class="container">
-    <div class="row">
+<div class="wrapper">
+    <div class="row-fluid">
       <div class="col-lg-12">
-        <h1>Some header</h1>
-        <p>
             {if !$page} {include file='pages/index.tpl'} {/if}
             {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
-        </p>
       </div>
     </div>
 </div>
