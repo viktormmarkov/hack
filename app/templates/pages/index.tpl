@@ -46,7 +46,12 @@
 				});	
 	$.ajax({type: "POST",
 	url:'ajax.php',
-	data: {action:'get_business'},
+	data: {action:'get_business',
+	my_lat:position.coords.latitude
+	,my_lon:position.coords.longitude,
+	type:$('#type').val(),
+	all:$('#all').val(),
+	name:$('#name').val()},
 	dataType: "json",
 	success: function(data){
 		for(var i = 0, object; object = data[i]; i++){

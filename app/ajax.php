@@ -93,7 +93,11 @@ function Ajax_Get_business() {
 	global $page, $action;
 	$type=get_param("type");
 	$name=get_param("name");
-	$where='';
+	$all=get_param("all");
+	$my_lat=get_param("my_lat");
+	$my_lon=get_param("my_lon");
+	if($all) $where='';
+	else $where=' and lat>($my_lat-5) and lat<($my_lat+5) and lon>($my_lon-5) and lon<($my_lon+5)';
 	if($type) $where.=" and type_id=$type";
 	if($name) $where.=" and (lcase(name) like lcase('%$name%')";
 		
