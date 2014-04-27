@@ -47,13 +47,14 @@
 	$.ajax({type: "POST",
 	url:'ajax.php',
 	data: {action:'get_business',
-	my_lat:position.coords.latitude
-	,my_lon:position.coords.longitude,
+	my_lat:position.coords.latitude,
+	my_lon:position.coords.longitude,
 	type:$('#type').val(),
 	all:$('#all').val(),
 	name:$('#name').val()},
 	dataType: "json",
 	success: function(data){
+		console.log(data);
 		for(var i = 0, object; object = data[i]; i++){
 			var myLatlng = new google.maps.LatLng(parseFloat(object.lat),parseFloat(object.lon));
 				var infoWindow = new google.maps.InfoWindow();

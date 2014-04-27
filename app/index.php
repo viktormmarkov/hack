@@ -18,6 +18,7 @@ if ($page == "save_table") Ajax_save_table();
 if ($page == "save_reserve") Ajax_save_reserve();
 if ($page == "get_reserve") Ajax_get_reserve();
 if ($page == "get_tables") Ajax_get_tables();
+if ($page == "view") View_business();
 
 $smarty->assign('notifications', $db->getall("Select reserve.* from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
 $smarty->assign('types', $db->getassoc("Select id,name from types"));
@@ -29,6 +30,14 @@ $smarty->assign('error', $error);
 $smarty->assign('result', $result);
 
 $smarty->display('index.tpl');	
+ 
+ function View_business() {
+	global $db, $smarty, $lang;
+	global $result, $error,$id;
+	$smarty->assign("info",$db->getrow("Select businesses.*, types.name as type_name from businesses,types where type_id=types.id and businesses.id=$id"));
+	$smarty->assign("slider",$db->getall("Select images.* from businesses,images where businesses_id=businesses.id and businesses_id=$id"));
+ }
+ 
  
 function Ajax_Register_user() {
 	global $db, $smarty, $lang;
