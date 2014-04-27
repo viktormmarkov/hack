@@ -12,23 +12,24 @@
 </script>
 {/literal}
 <div class="modal" id="login" style="display:none">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" onclick="close_login()" aria-hidden="true">×</button>
-                      <h4 class="modal-title">Вход</h4>
-                    </div>
-                    <div class="modal-body">
-                    <form method="post">
-                    <input type="text" placeholder="Username" name="username" />
-                    <input type="password" placeholder="Password" name="password" />
-                    <input type="hidden" value="login" name="page"  />
-                    </form>                    
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <input type="submit" name="login" value="Login" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div class="modal-dialog" id="login-inside">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" onclick="close_login()" aria-hidden="true">×</button>
+          <h4 class="modal-title">Вход</h4>
+        </div>
+        <div class="modal-body">
+        <form method="post" role="form">
+            <div class="form-group">
+                <input class = "input-sm my-extended" type="password" placeholder="Password" name="password" />
+            </div>
+            <div class="form-group">
+                <input class = "input-sm my-extended" type="password" placeholder="Password" name="password" />
+            </div>
+            <input type="hidden" value="login" name="page"  />
+            <div class="form-group"><input class="btn btn-sm btn-block" type="submit" name="login" value="Login" /></div>
+        </form>
+        </div>
+      </div>
+    </div>
+    </div>
