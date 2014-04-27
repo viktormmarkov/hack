@@ -7,7 +7,7 @@
 <div class="navbar navbar-default">
     <div class="wrapper">
         <div class="navbar-header">
-          <a href="/hack/app" class="navbar-brand">Make It Big</a>
+          <a href="" class="navbar-brand">Make It Big</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -30,8 +30,8 @@
                 </ul>
          {else}
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="?page=register">Register</a></li>
-                <li><a href="?page=login">Login</a></li>
+                <li><a href="javascript:void(0)" onClick="open_register();">Register</a></li>
+                <li><a href="javascript:void(0)" onClick="open_login();">Login</a></li>
               </ul>
           {/if}
         </div>
