@@ -79,3 +79,29 @@ body {
 .my-input {
     border: 1px solid #a9a9a9 !important;
 }
+
+.shown {
+    display:block;
+}
+#reservation {
+    width: 300px;
+    height: 400px;
+}
+#reservation .modal-content{
+    width: 300px;
+    background-color: #004589;
+}
+.close{
+    color: #ffffff !important;
+}
+.modal-header {
+    border-color: #0074ea;
+}
+
+.modal .btn {
+    background-color:#0052a4;
+    border-color: rgba(255,255,255, 0.4);
+}
+#reservation .modal-body{
+    padding-bottom:0;
+}
