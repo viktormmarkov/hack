@@ -89,7 +89,7 @@
     
     </script>
 {/literal}
-<input class="name-search" type="text" id="name"/>
+<input class="name-search input-sm" type="text" id="name"/>
 <select class="input-sm type-search" id="type" name="type"><br />
        <option value="0">Избери</option>
        {html_options options=$types selected=$user_info.type_id}
