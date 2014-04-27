@@ -26,9 +26,12 @@
 	  }
 
     function initialize(position) {
+		console.log(position);
+		if(!position) var coords=new google.maps.LatLng(42, 23);
+		else var coords =new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       var mapOptions = {
         zoom: 8,
-        center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+        center: coords
       };
 
       map = new google.maps.Map(document.getElementById('map-canvas'),
@@ -37,7 +40,7 @@
     }
 
 
-
+	google.maps.event.addDomListener(window , 'load' ,initialize);
 	function get_marks(position)  {
 	  new google.maps.Marker({
 					position: new google.maps.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)),
@@ -50,7 +53,7 @@
 	my_lat:position.coords.latitude,
 	my_lon:position.coords.longitude,
 	type:$('#type').val(),
-	all:$('#all').val(),
+	all:$('#all:checked').val(),
 	name:$('#name').val()},
 	dataType: "json",
 	success: function(data){
@@ -78,7 +81,14 @@
 	}
 });
     }
-
+	
+	function search() {
+		 if (navigator.geolocation)
+		{
+		navigator.geolocation.getCurrentPosition(initialize);
+		}
+		
+	}
 	function reserve(id) {
 		$('#business_id').val(id)
 		$('#reservation').removeClass("hide")
