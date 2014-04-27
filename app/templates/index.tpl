@@ -43,6 +43,7 @@
             {if !$page} {include file='pages/index.tpl'} {/if}
             {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
             {if $page eq 'tables'} {include file='pages/tables.tpl'} {/if}
+            {if $page eq 'view'} {include file='pages/view.tpl'} {/if}
       </div>
     </div>
 </div>
