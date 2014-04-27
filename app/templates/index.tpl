@@ -46,12 +46,18 @@
                 <li>
                      <a href="?page=business"><span class="glyphicon glyphicon-briefcase"></span> Create Business</a>
                 </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-th-large"></span> My Businesses</a>
+                </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
+                </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#"><span class="glyphicon glyphicon-user"></span> Hello, {$user_info.username}</a>
                     </li>
-                    <li><a href="?page=logout">Logout</a></li>
+                    <li><a href="?page=logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                 </ul>
          {else}
               <ul class="nav navbar-nav navbar-right">
