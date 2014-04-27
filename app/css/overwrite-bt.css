@@ -125,6 +125,6 @@ body {
     background-color: #004589;
 }
 
-#shown {
+.shown {
     display:block;
 }
