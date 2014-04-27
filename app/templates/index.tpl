@@ -14,6 +14,79 @@
             <span class="icon-bar"></span>
           </button>
         </div>
+        {literal}
+<script>
+ 	function open_login() {
+		$('#login').attr('style','display:block');
+		
+	}
+	function close_login() {
+		
+		$('#login').attr('style','display:none');
+	}
+
+</script>
+{/literal}
+<div class="modal" id="login" style="display:none">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" onclick="close_login()" aria-hidden="true">×</button>
+                      <h4 class="modal-title">Вход</h4>
+                    </div>
+                    <form method="post">
+                    <div class="modal-body">
+                    <input type="text" placeholder="Username" name="username" />
+                    <input type="password" placeholder="Password" name="password" />
+                    <input type="hidden" value="login" name="page"  />
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <input type="submit" name="login" value="Login" />
+                    </div>
+                    </form>                    
+					</div>
+                </div>
+              </div>
+
+{literal}
+<script>
+ 	function open_register() {
+		$('#register').attr('style','display:block');
+		
+	}
+	function close_register() {
+		
+		$('#register').attr('style','display:none');
+	}
+
+</script>
+{/literal}
+<div class="modal" id="register" style="display:none">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" onclick="close_register()" aria-hidden="true">×</button>
+                      <h4 class="modal-title">Вход</h4>
+                    </div>
+                    <form method="post">
+                    <div class="modal-body">
+                        <input type="text" placeholder="Username" name="username" />
+                        <input type="password" placeholder="Password" name="password" />
+                        <input type="text" placeholder="Name" name="name" />
+                        <input type="text" placeholder="Phone" name="phone" />
+                        <input type="text" placeholder="Email" name="email" />
+                        <input type="hidden" value="register" name="page"  />
+                        <input type="submit" name="login" value="Register" />
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close_register()">Close</button>
+                      <input type="submit" name="login" value="Login" />
+                    </div>
+                   </form>               
+                  </div>
+                </div>
+              </div>
         <div class="navbar-collapse collapse" id="navbar-main">
         {if $user_info}
               <ul class="nav navbar-nav">

@@ -16,6 +16,44 @@ if ($action == "save_tables") Ajax_save_table();
 if ($action == "save_reserve") Ajax_save_reserve();
 if ($action == "get_reserve") Ajax_get_reserve();
 if ($action == "get_tables") Ajax_get_tables();
+if ($action == "reservation") Load_Events_Reservation();
+if ($action == "get_free_tables") Ajax_get_free_tables();
+
+function Ajax_get_free_tables() {
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $action;
+	
+	$table_id=get_param("table_id");
+	$date=get_param("date");
+	$hour=get_param("hour");
+	$where='';
+	if($date) $where.=' and date !="$date"';
+	if($hour) $where.=" and hour!='$hour'";
+	$reserves=$db->getall("Select * from reserve where table_id=$table_id $where");
+	for($i=0;$reserves[$i];$i++) 
+	$data[$i]=$db->getrow("Select * from tables where id=".$reserves[$i]["table_id"]);
+	
+	echo json_encode($data);
+	
+	
+}
+function Load_Events_Reservation(){
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $action;
+	$lg=$_SESSION['language'];
+	$table_id=get_param("table_id");
+	if ($table_id) $where.=" and tables.id=$table_id";
+	$sSQL="select 
+	reserve.name as title, date as start, date as end
+	from reserve, businesses, tables
+	where reserve.business_id=businesses.id and tables.business_id=businesses.id and
+	table_id=tables.id 
+	$where";
+	$list=$db->getall($sSQL);
+	echo json_encode($list);	
+}
 
 function Ajax_Register_user() {
 	global $db, $smarty, $lang;
@@ -96,12 +134,13 @@ function Ajax_Get_business() {
 	$all=get_param("all");
 	$my_lat=get_param("my_lat");
 	$my_lon=get_param("my_lon");
-	if($all) $where='';
-	else $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
+	if($all and $my_lat and $my_lon) $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
+	else $where='';
 	if($type) $where.=" and type_id=$type";
-	if($name) $where.=" and (lcase(name) like lcase('%$name%')";
+	if($name) $where.=" and lcase(businesses.name) like lcase('%$name%')";
 		
 	$rs=$db->getall("Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where");
+	$rs["sql"]="Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where";
 	echo json_encode ($rs);	
 		
 	}

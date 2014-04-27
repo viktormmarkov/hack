@@ -66,16 +66,42 @@ body {
     background-color: #012b54;
     margin-bottom:0;
 }
-.name-search,
-.type-search {
+.my-inline-form {
     position: absolute;
     z-index:2;
-    top:5px;
-    width: 150px;
-    color: #000000;
-    left:45px;
-}
-.name-search {
     top: 5px;
-    left: 200px;
+    left: 45px;
+    background-color: rgba(0,82,164,0.7 );
+    border-radius: 4px;
+    padding-left: 5px;
+}
+
+.my-input {
+    border: 1px solid #a9a9a9 !important;
+}
+
+.shown {
+    display:block;
+}
+#reservation {
+    width: 300px;
+    height: 400px;
+}
+#reservation .modal-content{
+    width: 300px;
+    background-color: #004589;
+}
+.close{
+    color: #ffffff !important;
+}
+.modal-header {
+    border-color: #0074ea;
+}
+
+.modal .btn {
+    background-color:#0052a4;
+    border-color: rgba(255,255,255, 0.4);
+}
+#reservation .modal-body{
+    padding-bottom:0;
 }
