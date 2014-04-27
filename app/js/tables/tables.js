@@ -272,9 +272,10 @@ $(document).ready(function () {
             }
         });
 
-        if($(".notification").length==1){
-            var persons=$(".notification").children();
-            for(var i=3;i<persons.length;i++){
+
+            var persons=$(".notification-list").children();
+
+            for(var i=0;i<persons.length;i++){
                 $(persons[i]).click(function(e){
                     e.originalEvent.preventDefault();
                     $("#calendar_modal").remove();
@@ -319,11 +320,11 @@ $(document).ready(function () {
                     });
                 });
             }
-        }
+
 
 
         $("#filter_search").click(function () {
-            $("calendar-modal").remove();
+            $("#calendar_modal").remove();
             $.ajax({
                 url: "ajax.php",
                 type: "POST",
