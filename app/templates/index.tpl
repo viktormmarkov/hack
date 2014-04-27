@@ -51,7 +51,7 @@
 
 {literal}
 <script>
- 	function one_register() {
+ 	function open_register() {
 		$('#register').attr('style','display:block');
 		
 	}
