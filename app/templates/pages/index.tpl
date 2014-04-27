@@ -102,6 +102,7 @@
 		}
 	}
 	function reserve(id) {
+	debugger;
 		$('#business_id').val(id)
 		$('#modal').addClass("shown")
 	}

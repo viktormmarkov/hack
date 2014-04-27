@@ -102,10 +102,15 @@ body {
     background-color: #012b54;
 }
 
+#register .modal-dialog,
 #login .modal-dialog {
     width: 300px;
     height: 400px;
 }
+.modal .close {
+    color: #ffffff;
+}
+#register .btn,
 #login .btn {
     color: #ffffff;
 }
@@ -113,8 +118,13 @@ body {
     width: 300px;
     height: 400px;
 }
+#register .modal-content,
 #login .modal-content,
 #reservation .modal-content{
     width: 300px;
     background-color: #004589;
+}
+
+#shown {
+    display:block;
 }
