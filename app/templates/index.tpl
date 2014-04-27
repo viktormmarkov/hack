@@ -47,10 +47,10 @@
                      <a href="?page=business"><span class="glyphicon glyphicon-briefcase"></span> Create Business</a>
                 </li>
                 <li>
-                     <a href="?page=business"><span class="glyphicon glyphicon-th-large"></span> My Businesses</a>
+                     <a href="?page=tables&id={$business_id.id}"><span class="glyphicon glyphicon-th-large"></span> Manage Business</a>
                 </li>
                 <li>
-                     <a href="?page=business"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
+                     <a href="?page=notifications"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
@@ -75,6 +75,7 @@
             {if $page eq 'business'} {include file='pages/business.tpl'} {/if}
             {if $page eq 'tables'} {include file='pages/tables.tpl'} {/if}
             {if $page eq 'view'} {include file='pages/view.tpl'} {/if}
+            {if $page eq 'notifications'} {include file='pages/notifications.tpl'} {/if}
       </div>
     </div>
 </div>

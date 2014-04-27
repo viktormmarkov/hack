@@ -1,25 +1,9 @@
-<style>
-.rightPanel {
-	background-color: #CCC;
-}
-.row-fluid {
-	height: 100%;
-}
-.container-fluid {
-	height: 100%;
-}
-.columns {
-	 height: 100%;
-}
-</style>
-<div class="container-fluid wrapper">
-    <div class="row-fluid columns content">
-        <div class="span8"> </div>
-        
-        <div class="span4 rightPanel">
-        {section loop=$notifications name=val}
-        	{$notifications[val].name}<br />
-        {/section}
-        </div>
-    </div>
+<br />
+<div class="col-lg-10 col-lg-offset-1">
+{section loop=$notifications name=val}
+<div class="alert alert-dismissable alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>{$notifications[val].name}</strong> successfully added <a href="#" class="alert-link">click here</a>.
+</div>
+{/section}
 </div>
