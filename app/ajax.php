@@ -99,9 +99,10 @@ function Ajax_Get_business() {
 	if($all and $my_lat and $my_lon) $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
 	else $where='';
 	if($type) $where.=" and type_id=$type";
-	if($name) $where.=" and (lcase(name) like lcase('%$name%')";
+	if($name) $where.=" and lcase(businesses.name) like lcase('%$name%')";
 		
 	$rs=$db->getall("Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where");
+	$rs["sql"]="Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where";
 	echo json_encode ($rs);	
 		
 	}
