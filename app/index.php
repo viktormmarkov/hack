@@ -34,8 +34,8 @@ $smarty->display('index.tpl');
  function View_business() {
 	global $db, $smarty, $lang;
 	global $result, $error,$id;
-
-	$smarty->assign("info",$db->getrow("Select businesses.*, types.code as type_code from businesses,types where type_id=types.id and id=$id"));
+	$smarty->assign("info",$db->getrow("Select businesses.*, types.name as type_name from businesses,types where type_id=types.id and businesses.id=$id"));
+	$smarty->assign("slider",$db->getall("Select images.* from businesses,images where businesses_id=businesses.id and businesses_id=$id"));
  }
  
  
