@@ -72,7 +72,7 @@ function Ajax_Login(){
 		if (!$rs2) $data['success']=0;
 		else {
 			$_SESSION['user_info']=$rs2;
-			$data['success']=1;
+			$page='';
 		}
 
 

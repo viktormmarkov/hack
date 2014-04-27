@@ -7,11 +7,8 @@
 <div class="navbar navbar-default">
     <div class="wrapper">
         <div class="navbar-header">
-          <a href="" class="navbar-brand">Make It Big</a>
+          <a href="/hack/app" class="navbar-brand"><span class="glyphicon glyphicon-home"></span> Make It Big</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
           </button>
         </div>
         {literal}
@@ -27,27 +24,8 @@
 
 </script>
 {/literal}
-<div class="modal" id="login" style="display:none">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" onclick="close_login()" aria-hidden="true">×</button>
-                      <h4 class="modal-title">Вход</h4>
-                    </div>
-                    <form method="post">
-                    <div class="modal-body">
-                    <input type="text" placeholder="Username" name="username" />
-                    <input type="password" placeholder="Password" name="password" />
-                    <input type="hidden" value="login" name="page"  />
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <input type="submit" name="login" value="Login" />
-                    </div>
-                    </form>                    
-					</div>
-                </div>
-              </div>
+{include file = "pages/login.tpl"}
+{include file = "pages/register.tpl"}
 
 {literal}
 <script>
@@ -62,40 +40,24 @@
 
 </script>
 {/literal}
-<div class="modal" id="register" style="display:none">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" onclick="close_register()" aria-hidden="true">×</button>
-                      <h4 class="modal-title">Вход</h4>
-                    </div>
-                    <form method="post">
-                    <div class="modal-body">
-                        <input type="text" placeholder="Username" name="username" />
-                        <input type="password" placeholder="Password" name="password" />
-                        <input type="text" placeholder="Name" name="name" />
-                        <input type="text" placeholder="Phone" name="phone" />
-                        <input type="text" placeholder="Email" name="email" />
-                        <input type="hidden" value="register" name="page"  />
-                        <input type="submit" name="login" value="Register" />
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close_register()">Close</button>
-                      <input type="submit" name="login" value="Login" />
-                    </div>
-                   </form>               
-                  </div>
-                </div>
-              </div>
         <div class="navbar-collapse collapse" id="navbar-main">
         {if $user_info}
               <ul class="nav navbar-nav">
                 <li>
-                     <a href="?page=business">Create Business</a>
+                     <a href="?page=business"><span class="glyphicon glyphicon-briefcase"></span> Create Business</a>
+                </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-th-large"></span> My Businesses</a>
+                </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="?page=logout">Logout</a></li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-user"></span> Hello, {$user_info.username}</a>
+                    </li>
+                    <li><a href="?page=logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                 </ul>
          {else}
               <ul class="nav navbar-nav navbar-right">
