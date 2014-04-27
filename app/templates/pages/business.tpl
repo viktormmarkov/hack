@@ -1,41 +1,59 @@
-<form role="form" class = "well col-md-6" method="post" enctype="multipart/form-data">
+<form role="form" class = "well form-horizontal col-md-6" method="post" enctype="multipart/form-data">
 
     <div class="form-group">
-        <label>name</label><br />
-        <input class="form-control input-sm" type="text" name="name" id="name" value="{$info.name}" /><br />
-    </div>
-    <div class="form-group inline col-lg-6">
-        <label>latitude</label><br />
-        <input class="form-control-inline  input-sm inline" type="text" name="lat" id="lat" value="{$info.lat}" /><br />
-    </div>
-    <div class="form-group inline col-lg-6">
-        <label>lontitude</label><br />
-        <input class="form-control-inline  input-sm inline" type="text" name="lon" id="lon" value="{$info.lon}" /><br />
+        <label class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+            <input class="form-control input-sm" type="text" name="name" id="name" value="{$info.name}" />
+        </div>
     </div>
     <div class="form-group">
-        <label>description</label><br />
-        <textarea class="form-control  input-sm" name="description"> {$info.description}</textarea><br />
+        <label class="col-lg-2 control-label">Latitude</label>
+        <div class="col-lg-10">
+            <input class="form-control-inline  input-sm inline" type="text" name="lat" id="lat" value="{$info.lat}" />
+        </div>
     </div>
-    <div class="form-group inline col-lg-6">
-    <label>type</label><br />
-
-        <select class="my-extended input-sm" name="type"><br />
-        <option value="0">izberi</option>
-
-                                    {html_options options=$types selected=$user_info.type_id}
-        </select>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Lontitude</label>
+        <div class="col-lg-10">
+            <input class="form-control-inline input-sm inline" type="text" name="lon" id="lon" value="{$info.lon}" />
+        </div>
     </div>
-</br>
-    <div class="form-group inline col-lg-6">
-    <div class="checkbox"><label><input type="checkbox" name="hour" id="name" value="{$info.name}"  />hour? </label>
-        </div></div>
+    <div class="form-group">
+          <label class="col-lg-2 control-label">Description</label>
+          <div class="col-lg-10">
+              <textarea class="form-control input-sm" name="description"> {$info.description}</textarea>
+          </div>
+    </div>
+    <div class="form-group">
+          <label class="col-lg-2 control-label">Work Time</label>
+          <div class="col-lg-10">
+              <input class="form-control input-sm" type="text" id="worktime" name="worktime" value="{$info.worktime}" />
+          </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Type</label>
+        <div class="col-lg-10">
+           <select class="my-extended input-sm" name="type">
+               {html_options options=$types selected=$user_info.type_id}
+           </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-lg-2 control-label">Image</label>
+        <div class="col-lg-10">
+            <input class="form-control input-sm" type="file" name="photo"/>
+        </div>
+    </div>
 
-    <label >image</label><br />
-    <input class="btn btn-primary btn-inversed" type="file" name="photo"/><br />
     <input type="hidden" name="page" value="{$page}" />
     <input type="hidden" name="action" value="edit" />
     <input type="hidden" name="id" value="{$id}" />
-    <input class="btn btn-primary" type="submit" name="save" value="Save" />
+
+    <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+            <input class="btn btn-primary" type="submit" name="save" value="Save" />
+        </div>
+    </div>
 </form>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
@@ -61,8 +79,7 @@ var marker;
                   marker = new google.maps.Marker({
                   					position: myLatlng,
                   					map: map,
-                  					title: object.name,
-                  					icon: "img/food.png"
+                  					title: object.name
                   				});
 
               });
@@ -75,6 +92,6 @@ var marker;
 
 </script>
 {/literal}
-<div class="col-lg-6" id="map-canvas" style="height: 550px"></div>
+<div class="col-lg-6" id="map-canvas" style="height: 360px"></div>
 
 

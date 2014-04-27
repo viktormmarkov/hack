@@ -128,3 +128,13 @@ body {
 #shown {
     display:block;
 }
+
+.btn-primary{
+    background-color: #0074ea;
+    border: 0;
+}
+
+.btn-primary:hover{
+    background-color: #012b54;
+    border: 0;
+}

@@ -55,8 +55,7 @@
 	function get_marks(position)  {
 	  new google.maps.Marker({
 					position: position,
-					map: map,
-					icon: "img/food.png"
+					map: map
 				});	
 					console.log(position);
 
