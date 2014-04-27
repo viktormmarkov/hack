@@ -89,12 +89,12 @@
     
     </script>
 {/literal}
-<input class="name-search" type="text" id="name"/>
-<select class="input-sm type-search" id="type" name="type">
+<input class="name-search" type="text" id="name" onchange="search()"/>
+<select class="input-sm type-search" id="type" name="type"  onchange="search()">
        <option value="0">Избери</option>
        {html_options options=$types selected=$user_info.type_id}
 </select>
-<input type="checkbox" id="all" value="1"/> Всички
+<input type="checkbox" id="all" value="1"  onchange="search()"/> Всички
 <div id="map-canvas" style="height: 350px"></div>
 
 <div class="jumbotron">
