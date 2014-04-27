@@ -19,7 +19,7 @@
           <h4 class="modal-title">Вход</h4>
         </div>
         <div class="modal-body">
-        <form  role="form" method="get">
+        <form  role="form" method="post">
             <div class="form-group">
                 <input class = "input-sm my-extended" type="text" placeholder="Username" name="username" />
             </div>
