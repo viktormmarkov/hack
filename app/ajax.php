@@ -96,8 +96,8 @@ function Ajax_Get_business() {
 	$all=get_param("all");
 	$my_lat=get_param("my_lat");
 	$my_lon=get_param("my_lon");
-	if(!$all) $where='';
-	else $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
+	if($all and $my_lat and $my_lon) $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
+	else $where='';
 	if($type) $where.=" and type_id=$type";
 	if($name) $where.=" and (lcase(name) like lcase('%$name%')";
 		

@@ -27,7 +27,7 @@
 
     function initialize(position) {
 		console.log(position);
-		if(!position) var coords=new google.maps.LatLng(42, 23);
+		if(!position.coords) var coords=new google.maps.LatLng(42, 23);
 		else var coords =new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       var mapOptions = {
         zoom: 8,
