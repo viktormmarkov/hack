@@ -50,8 +50,8 @@ var marker;
           map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
             google.maps.event.addDomListener(map, 'click', function(object){
 
-                  $('#lat').val(object.latLng.A);
-                  $('#lon').val(object.latLng.k);
+                  $('#lat').val(object.latLng.k);
+                  $('#lon').val(object.latLng.A);
                   if(marker){
                         marker.setMap(null);
                         marker = null;

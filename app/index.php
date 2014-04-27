@@ -20,6 +20,7 @@ if ($page == "get_reserve") Ajax_get_reserve();
 if ($page == "get_tables") Ajax_get_tables();
 
 $smarty->assign('notifications', $db->getall("Select reserve.* from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
+$smarty->assign('types', $db->getassoc("Select id,name from types"));
 $smarty->assign('id', $id);
 $smarty->assign('page', $page);
 $smarty->assign('user_info', $_SESSION['user_info']);
@@ -97,11 +98,11 @@ function Load_business() {
 			$id=$db->insert_id("businesses","id");
 		}
 		if($id) {
-			$photo=$_FILES['photo']['tmp_name'];	
+			$photo=$_FILES['photo']['tmp_name'];
+
 			if($photo) {
 					if(file_exists("uploads/".$id."_map.jpg"))unlink ("uploads/".$id."_map.jpg");
 					$file="uploads/".$id."_map.jpg";
-					echo $file;
 					move_uploaded_file($photo,  $file);
 				}
 			$db->execute ("Update businesses set name='$name', lat='$lat', lon='$lon', description='".$description."', type_id='$type', hour='$hour', img='$file' where id=$id");

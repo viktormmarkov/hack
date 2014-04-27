@@ -49,11 +49,13 @@
 
 				google.maps.event.addListener(marker,'click',(function (marker,object) {
 						return function () {
-							infoWindow.setContent(object.description+'<br><button onclick=reserve('+object.id+')>Reserve</button>');
+							infoWindow.setContent("<div style='color:black; width:200px'>"+object.description+object.description+object.description+object.description+'</div><br><button onclick=reserve('+object.id+')>Reserve</button>');
 							infoWindow.open(map, marker);
+							
 						}
 					})(marker,object)
 				);
+				
 			}
 	}
 });
@@ -69,4 +71,8 @@
     
     </script>
 {/literal}
-<div id="map-canvas" style="height: 300px"></div>
+<div id="map-canvas" style="height: 330px"></div>
+<div class="jumbotron">
+	<h1>Make it big</h1>
+    <p>Намерете най-добрите услуги близо до вас</p>
+</div>
