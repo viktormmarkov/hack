@@ -6,6 +6,7 @@ var elems=[];
 
 
 $(document).ready(function () {
+
     var paper = Raphael("d1", 1024, 500);
 
     // start, move, and up are the drag functions
@@ -224,7 +225,7 @@ $(document).ready(function () {
             DrawRectangleWithoutMove(BBox.x,BBox.y,BBox.width,BBox.height);
 
         }
-
+        console.log(2222222);
         window.location.href="?page=tables&id="+$('#hidden_id').val()+"";
     });
 
@@ -247,7 +248,26 @@ $(document).ready(function () {
                     rect.node.attributes[10].nodeValue = data[i].description;
                     rect.node.attributes[11].nodeValue = data[i].id;
                     elems.push(rect);
+                    elems[i].click(function (e) {
 
+                        console.log( e.target.getAttribute("table_id"));
+                        $.ajax({
+                            url: "ajax.php",
+                            type: "POST",
+                            data: {action:'reservation',
+                                table_id:1,
+                                business_id:5},
+                            dataType: "json",
+                            success: function (data) {
+                                $('#calendar').fullCalendar({
+                                    editable: false,
+                                    events:data
+                                });
+                                $('#calendar_modal').css("display","block");
+
+                            }
+                        });
+                    });
                 }
             }
         });
@@ -257,6 +277,7 @@ $(document).ready(function () {
             for(var i=3;i<persons.length;i++){
                 $(persons[i]).click(function(e){
                     e.originalEvent.preventDefault();
+                    $("#calendar_modal").remove();
 
                     $(this).addClass("active-user");
 
@@ -280,7 +301,6 @@ $(document).ready(function () {
                                 }
                                 if (elems[i].node.attributes[7].nodeValue == "#03ff03") {
                                     elems[i].click(function (e) {
-                                        e.originalEvent.preventDefault();
                                         console.log( e.target.getAttribute("table_id"));
                                         console.log($(".active-user")[0].getAttribute("reserve_id"));
                                         $.ajax({
@@ -303,7 +323,7 @@ $(document).ready(function () {
 
 
         $("#filter_search").click(function () {
-
+            $("calendar-modal").remove();
             $.ajax({
                 url: "ajax.php",
                 type: "POST",
@@ -333,8 +353,10 @@ $(document).ready(function () {
                         success: function (data) {
                             $('#calendar').fullCalendar({
                                 editable: false,
+                                events:data,
                                 today: false
-                            }).css("display","block");
+                            });
+                            $('#calendar_modal').css("display","block");
 
                                     }
                                 });
@@ -348,7 +370,14 @@ $(document).ready(function () {
 
 
 
-
     })();
 });
 
+function    close_calendar() {
+    $('#calendar').html('');
+    $('#calendar_modal').css("display","none");
+}
+
+function remove_notification(){
+
+}

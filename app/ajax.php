@@ -60,7 +60,7 @@ function Load_Events_Reservation(){
 	$table_id=get_param("table_id");
 	if ($table_id) $where.=" and tables.id=$table_id";
 	$sSQL="select 
-	reserve.name as title, date as start, date as end
+	concat(reserve.name, '-' ,reserve.hour) as title, date as start, date as end
 	from reserve, businesses, tables
 	where reserve.business_id=businesses.id and tables.business_id=businesses.id and
 	table_id=tables.id 

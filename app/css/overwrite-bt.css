@@ -145,3 +145,16 @@ body {
     left:700px;
     background: url("../img/img.png") no-repeat;
 }
+
+.notification-list {
+    position: relative;
+}
+.notification-item {
+    color: #002a80;
+    background-color: #CCCCFF;
+    height: 46px;
+    position: relative;
+}
+.fright {
+    float: right;
+}
