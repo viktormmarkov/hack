@@ -20,10 +20,6 @@
                 <li>
                      <a href="?page=business">Create Business</a>
                 </li>
-                <li>
-                <form class="navbar-form navbar-left">
-                    <input type="text" class="form-control col-lg-8" placeholder="Search place">
-                </form>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                   <li><a href="?page=logout">Logout</a></li>

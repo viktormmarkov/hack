@@ -97,12 +97,11 @@ function Ajax_Get_business() {
 	$my_lat=get_param("my_lat");
 	$my_lon=get_param("my_lon");
 	if($all) $where='';
-	else $where=' and lat>($my_lat-5) and lat<($my_lat+5) and lon>($my_lon-5) and lon<($my_lon+5)';
+	else $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
 	if($type) $where.=" and type_id=$type";
 	if($name) $where.=" and (lcase(name) like lcase('%$name%')";
 		
 	$rs=$db->getall("Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where");
-
 	echo json_encode ($rs);	
 		
 	}
