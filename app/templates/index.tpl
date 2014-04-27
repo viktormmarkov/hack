@@ -7,11 +7,8 @@
 <div class="navbar navbar-default">
     <div class="wrapper">
         <div class="navbar-header">
-          <a href="/hack/app" class="navbar-brand">Make It Big</a>
+          <a href="/hack/app" class="navbar-brand"><span class="glyphicon glyphicon-home"></span> Make It Big</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
           </button>
         </div>
         {literal}
@@ -47,14 +44,20 @@
         {if $user_info}
               <ul class="nav navbar-nav">
                 <li>
-                     <a href="?page=business">Create Business</a>
+                     <a href="?page=business"><span class="glyphicon glyphicon-briefcase"></span> Create Business</a>
+                </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-th-large"></span> My Businesses</a>
+                </li>
+                <li>
+                     <a href="?page=business"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a href="#"><span class="glyphicon glyphicon-user"></span> Hello, {$user_info.username}</a>
                     </li>
-                    <li><a href="?page=logout">Logout</a></li>
+                    <li><a href="?page=logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
                 </ul>
          {else}
               <ul class="nav navbar-nav navbar-right">
