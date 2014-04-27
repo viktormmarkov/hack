@@ -19,9 +19,9 @@
           <h4 class="modal-title">Вход</h4>
         </div>
         <div class="modal-body">
-        <form method="post" role="form">
+        <form  role="form" method="get">
             <div class="form-group">
-                <input class = "input-sm my-extended" type="password" placeholder="Password" name="password" />
+                <input class = "input-sm my-extended" type="text" placeholder="Username" name="username" />
             </div>
             <div class="form-group">
                 <input class = "input-sm my-extended" type="password" placeholder="Password" name="password" />
