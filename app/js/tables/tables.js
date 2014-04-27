@@ -102,6 +102,7 @@ $(document).ready(function () {
             stroke: "#F00"
         });
         $(element.node).attr('description', ' ');
+        $(element.node).attr('table_id', ' ');
         $(element.node).attr('id', '' + (Math.random() * 100000));
         console.log(element.attr('x'));
 
@@ -218,11 +219,12 @@ $(document).ready(function () {
 
         $("#table-container").remove();
         for (var i = 0; i < elems.length; i++) {
-            debugger;
             var BBox=elems[i].getBBox();
             elems[i].remove();
             DrawRectangleWithoutMove(BBox.x,BBox.y,BBox.width,BBox.height);
         }
+
+        window.location.href="?page=tables&id="+$('#hidden_id').val()+"";
     });
 
     (function(){
@@ -233,11 +235,35 @@ $(document).ready(function () {
             dataType: "json",
             success: function (data) {
                for(var i=0;i<data.length;i++){
-
-                   var rect=DrawRectangle(parseFloat(data[i].x1),parseFloat(data[i].y1),parseFloat(data[i].x2)-parseFloat(data[i].x1),parseFloat(data[i].y2)-parseFloat(data[i].y1));
-                   rect.node.attributes[10].nodeValue=data.description;
+                   var rect;
+                   if($("#change").length!=0) {
+                        rect = DrawRectangleWithoutMove(parseFloat(data[i].x1), parseFloat(data[i].y1), parseFloat(data[i].x2) - parseFloat(data[i].x1), parseFloat(data[i].y2) - parseFloat(data[i].y1));
+                   }
+                   else {
+                        rect = DrawRectangle(parseFloat(data[i].x1), parseFloat(data[i].y1), parseFloat(data[i].x2) - parseFloat(data[i].x1), parseFloat(data[i].y2) - parseFloat(data[i].y1));
+                   }
+                   rect.node.attributes[10].nodeValue = data[i].description;
+                   rect.node.attributes[11].nodeValue = data[i].id;
                 }
             }
         });
+
+        if($(".notification").length==1){
+            var persons=$(".notification").children();
+            for(var i=0;i<persons.length;i++){
+                $(persons[i]).click(function(){
+                    $(this).addClass("active-user");
+                  /* $.ajax({
+                       url: "ajax.php",
+                       type: "POST",
+                       data: {date: , hour: , business_id: $('#hidden_id').val(),table_id:, action: 'get_free_tables'},
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                        }
+                    });*/
+                });
+            }
+        }
     })();
 });
