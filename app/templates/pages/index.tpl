@@ -143,6 +143,7 @@
 <div class="jumbotron">
 	<h1>Make it big</h1>
     <p>Намерете най-добрите услуги близо до вас</p>
+    <div class="jumbo-image"></div>
 </div>
 
 
