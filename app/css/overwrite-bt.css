@@ -79,3 +79,25 @@ body {
 .my-input {
     border: 1px solid #a9a9a9 !important;
 }
+
+.types{
+    position: absolute;
+    z-index:2;
+    top: 300px;
+    left: 45px;
+    border-radius: 4px;
+    padding-left: 5px;
+}
+
+.types .btn-default{
+    background-color: rgba(0,82,164,0.7 );
+    border: 1px solid #012b54;
+}
+
+.types .btn:hover{
+    background-color: #012b54;
+}
+
+.types .btn-selected{
+    background-color: #012b54;
+}

@@ -88,7 +88,6 @@
 		{
 		navigator.geolocation.getCurrentPosition(initialize);
 		}
-		
 	}
 	function reserve(id) {
 		$('#business_id').val(id)
@@ -102,21 +101,47 @@
 {/literal}
 <form role="form" class="my-inline-form form-inline">
     <div class="form-group">
-        <input class="name-search my-input input-sm" type="text" id="name" onchange="search()"/>
-    </div>
-    <div class="form-group">
-        <select class="input-sm type-search" id="type" name="type"  onchange="search()">
-               <option value="0">Избери</option>
-               {html_options options=$types selected=$user_info.type_id}
-        </select>
+        <input class="name-search my-input input-sm" type="text" id="name" onkeyup="search()"/>
+        <input type="hidden" type="text" id="type" name="type" value="0" />
     </div>
     <div class="form-group">
         <div class="checkbox btn">
-        <label><input type="checkbox" id="all" value="1"  onchange="search()"/>Заведения около мен</label></div>
+        <label><input type="checkbox" id="all" value="0"  onchange="search()"/>Заведения около мен</label></div>
     </div>
 </form>
+<div class="types">
+    <button type="button" class="btn btn-default btn-selected">
+        <span class="glyphicon glyphicon-globe"></span> Всички
+        <input type="hidden" class="type-id" value="0" />
+    </button>
+    <button type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-glass"></span> Заведения
+      <input type="hidden" class="type-id" value="2" />
+    </button>
+    <button type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-cutlery"></span> Ресторанти
+      <input type="hidden" class="type-id" value="1" />
+    </button>
+    <button type="button" class="btn btn-default">
+      <span class="glyphicon glyphicon-bookmark"></span> Услуги
+      <input type="hidden" class="type-id" value="3" />
+    </button>
+</div>
 <div id="map-canvas" style="height: 350px"></div>
+
 <div class="jumbotron">
 	<h1>Make it big</h1>
     <p>Намерете най-добрите услуги близо до вас</p>
 </div>
+
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".types .btn").click(function(){
+            $(this).parent().children().removeClass("btn-selected");
+            $(this).addClass("btn-selected");
+            $(".my-inline-form #type").val($(this).find(".type-id").val());
+            search();
+        });
+    });
+</script>
