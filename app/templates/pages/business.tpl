@@ -18,6 +18,7 @@
     </div>
     <div class="form-group inline col-lg-6">
     <label>type</label><br />
+
         <select class="my-extended input-sm" name="type"><br />
         <option value="0">izberi</option>
 
