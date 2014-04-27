@@ -5,16 +5,15 @@
     border:0;
     border-radius:0;
 }
-.navbar-inverse .navbar-nav > .open > a,
-.navbar-inverse .navbar-nav > .open > a:hover,
-.navbar-inverse .navbar-nav > .open > a:focus {
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
+{
     background-color: #0052a4;
 }
-.navbar-inverse .navbar-brand {
+.navbar-default .navbar-brand {
     color: #f7bf13;
 }
-.navbar-inverse .navbar-nav > li > a {
-    color: #ffffff;
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    color: #ffffff !important;
 }
 
 .navbar-item:hover {
