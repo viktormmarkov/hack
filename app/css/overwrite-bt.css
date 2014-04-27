@@ -126,6 +126,17 @@ body {
     background-color: #004589;
 }
 
+#calendar_modal .modal-content{
+    width: 1000px;
+	background-color: #004589;
+    
+}
+#calendar_modal .modal-dialog{
+    width: 1000px;
+	
+    
+}
+
 .shown {
     display:block;
 }
@@ -151,10 +162,22 @@ body {
 }
 .notification-item {
     color: #002a80;
-    background-color: #CCCCFF;
     height: 46px;
     position: relative;
+	border-radius: 2px;
+	padding: 3px;
+	background-color:white;
+	margin:3px;
 }
 .fright {
-    float: right;
+	float: right;
+	position: absolute;
+	right: 1px;
+	top: 1px;
+	}
+.msg{
+	line-height:40px;	
+}
+.desc .btn {
+	background-color: #0074ea;
 }

@@ -1,4 +1,29 @@
-<div class="modal" id="modal">
+<?php /* Smarty version Smarty-3.1.16, created on 2014-04-27 21:21:07
+         compiled from "./templates/pages/index.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:549760989535d21a5d1ea47-93724849%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+$_valid = $_smarty_tpl->decodeProperties(array (
+  'file_dependency' => 
+  array (
+    '3d7bc0d11d999ff8bd2e86db66bb922bf7ace1f5' => 
+    array (
+      0 => './templates/pages/index.tpl',
+      1 => 1398622866,
+      2 => 'file',
+    ),
+  ),
+  'nocache_hash' => '549760989535d21a5d1ea47-93724849',
+  'function' => 
+  array (
+  ),
+  'version' => 'Smarty-3.1.16',
+  'unifunc' => 'content_535d21a5d21ce1_77914093',
+  'variables' => 
+  array (
+    'business_id' => 0,
+  ),
+  'has_nocache_code' => false,
+),false); /*/%%SmartyHeaderCode%%*/?>
+<?php if ($_valid && !is_callable('content_535d21a5d21ce1_77914093')) {function content_535d21a5d21ce1_77914093($_smarty_tpl) {?><div class="modal" id="modal">
     <div class="modal-dialog" id="reservation">
         <div class="modal-content">
             <form role="form" method="post">
@@ -15,7 +40,8 @@
                     <div class="form-group"><input class="input-sm my-extended" type="text" name="phone" placeholder="phone"></div>
                     <div class="form-group"><input class="input-sm my-extended" type="text" name="email" placeholder="email"></div>
                     <div class="form-group"><input type="hidden" name="page" value="save_reserve"></div>
-                    <div class="form-group"><input type="hidden" name="business_id" id="business_id" value="{$business_id}"></div>
+                    <div class="form-group"><input type="hidden" name="business_id" id="business_id" value="<?php echo $_smarty_tpl->tpl_vars['business_id']->value;?>
+"></div>
                     <div class="form-group"><input class="btn btn-default btn-sm btn-block" type="submit" name="save" value="Save"></div>
                 </div>
             </form>
@@ -23,7 +49,7 @@
     </div>
 </div>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-{literal}
+
 <script>
     function closeModal(){
         $("#modal").removeClass("shown");
@@ -85,7 +111,7 @@
 						return function () {
 							infoWindow.setContent("<div class='desc' style='color:black; width:200px'><strong>"+object.name+'</strong><br>'+object.description+'</div><br><button class="btn btn-sm btn-block" onclick=reserve('+object.id+')>Reserve</button><button style="display: block" class="btn btn-sm btn-block" onclick=view('+object.id+')>View</button>');
 							infoWindow.open(map, marker);
-							
+							infoWindow.class("desc");
 							
 						}
 					})(marker,object)
@@ -115,7 +141,7 @@
 
     
     </script>
-{/literal}
+
 <form role="form" class="my-inline-form form-inline">
     <div class="form-group">
         <input class="name-search my-input input-sm" type="text" id="name" onkeyup="search()"/>
@@ -163,3 +189,4 @@
         });
     });
 </script>
+<?php }} ?>

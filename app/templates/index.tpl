@@ -7,7 +7,7 @@
 <div class="navbar navbar-default">
     <div class="wrapper">
         <div class="navbar-header">
-          <a href="/hack/app" class="navbar-brand"><span class="glyphicon glyphicon-home"></span> Make It Big</a>
+          <a href="{$CONFIG_HOST}" class="navbar-brand"><span class="glyphicon glyphicon-home"></span> Make It Big</a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
           </button>
         </div>
@@ -46,12 +46,15 @@
                 <li>
                      <a href="?page=business"><span class="glyphicon glyphicon-briefcase"></span> Create Business</a>
                 </li>
+                {if $business_id.id}
                 <li>
                      <a href="?page=tables&id={$business_id.id}"><span class="glyphicon glyphicon-th-large"></span> Manage Business</a>
                 </li>
+                
                 <li>
-                     <a href="?page=notifications"><span class="glyphicon glyphicon-bell"></span> Notifications <span class="badge">3</span></a>
-                </li>
+                     <a href="?page=tables&id={$business_id.id}"><span class="glyphicon glyphicon-bell"></span> Notifications
+                      <span class="badge">{$notifications_c}</span></a>
+                </li>{/if}
               </ul>
               <ul class="nav navbar-nav navbar-right">
                     <li>

@@ -19,6 +19,17 @@ if ($action == "get_tables") Ajax_get_tables();
 if ($action == "reservation") Load_Events_Reservation();
 if ($action == "get_free_tables") Ajax_get_free_tables();
 if ($action == "reserve_table") Ajax_reserve_table();
+if ($action == "remove_notification") Ajax_remove_notification();
+
+function Ajax_remove_notification() {
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $action;
+	 $id=get_param("id");
+	 $db->execute("Delete from reserve where id=$id");
+	 $data['sql']="Delete from reserve where id=$id";
+	 json_encode ($data);	
+}
 
 function Ajax_get_free_tables() {
 	global $db, $smarty, $lang;
@@ -30,12 +41,12 @@ function Ajax_get_free_tables() {
 	$where1='';
 	if($date) $where1.=' and date ="'.$date.'"';
 	if($hour) $where1.=' and hour ="'.$hour.'"';
-	$reserves_busy=$db->getall("Select * from reserve where business_id=$business_id $where1");
+	$reserves_busy=$db->getall("Select * from reserve where business_id=$business_id and state=1 $where1");
 	$busy='';
 	for($i=0;$reserves_busy[$i];$i++) {
 	$data[$i]=$db->getrow("Select * from tables where id=".$reserves_busy[$i]["table_id"]);
 	}
-		$data['sql']="Select * from reserve where business_id=$business_id $where1";
+		$data['sql']="Select * from tables where id=".$reserves_busy[0]["table_id"];
 
 	echo json_encode($data);
 	
@@ -83,7 +94,7 @@ function Ajax_Register_user() {
 		$db->execute("insert into users (name,email,username,password,phone) values ('$name','$email','$username','$password','$phone')");
 		$db->insert_id("id","users");
 		$_SESSION['user_info']=$db->getrow("Select * from users where id=$id");
-		   $data["success"]=1;
+		  $page='';
 
 	}
 	else $data["success"]=0;
@@ -148,12 +159,16 @@ function Ajax_Get_business() {
 	$all=get_param("all");
 	$my_lat=get_param("my_lat");
 	$my_lon=get_param("my_lon");
-	if($all and $my_lat and $my_lon) $where=' and lat>('.doubleval($my_lat-5).') and lat<('.doubleval($my_lat+5).') and lon>('.doubleval($my_lon-5).') and lon<('.doubleval($my_lon+5).')';
-	else $where='';
+	$where='';
+
+	if($all and $my_lat and $my_lon) $where.=' and lat>'.doubleval($my_lat-1).' and lat<'.doubleval($my_lat+1).' and lon>'.doubleval($my_lon-1).' and lon<'.doubleval($my_lon+1);
 	if($type) $where.=" and type_id=$type";
 	if($name) $where.=" and lcase(businesses.name) like lcase('%$name%')";
 		
 	$rs=$db->getall("Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where");
+	$rs["my_lat"]=$my_lat;
+	$rs["my_lon"]=$my_lon;
+	$rs["all"]=$all;
 	$rs["sql"]="Select businesses.*, types.code as type_code from businesses,types where type_id=types.id $where";
 	echo json_encode ($rs);	
 		

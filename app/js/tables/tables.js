@@ -255,10 +255,12 @@ $(document).ready(function () {
                             url: "ajax.php",
                             type: "POST",
                             data: {action:'reservation',
-                                table_id:1,
-                                business_id:5},
+                                table_id:e.target.getAttribute("table_id"),
+                                business_id:$('#hidden_id').val()},
                             dataType: "json",
                             success: function (data) {
+								console.log('calendar');
+								console.log(data);
                                 $('#calendar').fullCalendar({
                                     editable: false,
                                     events:data
@@ -291,13 +293,13 @@ $(document).ready(function () {
                        data: {date:$(this).attr("date") , hour:$(this).attr("hour") , business_id: $('#hidden_id').val(), action: 'get_free_tables'},
                         dataType: "json",
                         success: function (data) {
+							console.log('zaeti masi');
                             console.log(data);
                             for (var i = 0; i < elems.length; i++) {
                                 elems[i].node.attributes[7].nodeValue = "#03ff03";
                                 for (index in data) {
                                     if (data[index].id == elems[i].node.attributes[11].nodeValue) {
                                         elems[i].node.attributes[7].nodeValue = "#ff0000";
-                                        break;
                                     }
                                 }
                                 if (elems[i].node.attributes[7].nodeValue == "#03ff03") {
@@ -381,6 +383,16 @@ function    close_calendar() {
     $('#calendar_modal').css("display","none");
 }
 
-function remove_notification(){
+function remove_notification(id){
+	$('#not_'+id).remove();
+     $.ajax({
+                url: "ajax.php",
+                type: "POST",
+                data: {date:id, action: 'remove_notification'},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+				}
+	 });
 
 }

@@ -19,19 +19,26 @@ if ($page == "save_reserve") Ajax_save_reserve();
 if ($page == "get_reserve") Ajax_get_reserve();
 if ($page == "get_tables") Ajax_get_tables();
 if ($page == "view") View_business();
+if ($page == "tables") tables();
 
 $smarty->assign('notifications', $db->getall("Select reserve.* from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
+$smarty->assign('notifications_c', $db->getone("Select count(*) from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
 $smarty->assign('types', $db->getassoc("Select id,name from types"));
-$smarty->assign('business_id', $db->getone("Select id from business where user_id=.".$_SESSION['user_info']['id']));
 $smarty->assign('id', $id);
 $smarty->assign('page', $page);
 $smarty->assign('user_info', $_SESSION['user_info']);
 $smarty->assign('action', $action);
 $smarty->assign('error', $error); 
 $smarty->assign('result', $result);
-$smarty->assign('business_id', $db->getrow("Select id from businesses where user_id=".$_SESSION['user_info']['id']." limit 1"));
+$smarty->assign('business_id', $db->getrow("Select id,type_id from businesses where user_id=".$_SESSION['user_info']['id']." limit 1"));
 $smarty->display('index.tpl');
- 
+ function tables () {
+	global $db, $smarty, $lang;
+	global $result, $error,$id;
+	$smarty->assign("info",$db->getrow("Select * from businesses where id=$id"));	
+	
+ }
+	 
  function View_business() {
 	global $db, $smarty, $lang;
 	global $result, $error,$id;
@@ -164,6 +171,7 @@ function Ajax_save_reserve() {
 	global $result, $error;
 	global $page, $action,$id;
 	$save=get_param("save");
+	$admin=get_param("admin");
 
 	if($save) {
 	$business_id=get_param("business_id");
@@ -171,11 +179,25 @@ function Ajax_save_reserve() {
 	$date=get_param("date");
 	$hour=get_param("hour");
 	$p_count=get_param("p_count");
+	$page='';
+	if($admin) {
+	$name=$_SESSION['user_info']['name'];
+	$phone=$_SESSION['user_info']['phone'];
+	$email=$_SESSION['user_info']['email'];
+	$url="index.php?page=tables&id=".$id;
+	$page='tables';
+	
+	}
+	else {
 	$name=get_param("name");
 	$phone=get_param("phone");
 	$email=get_param("email");
-		$db->execute("insert into reserve (business_id,table_id,date,hour,p_count,name,phone,email) values ($business_id,'$table_id','$date','$hour','$p_count','$name','$phone','$email')");
-$page='';	}
+	$url='';
+	}
+		$db->execute("insert into reserve (business_id,table_id,date,hour,p_count,name,phone,email) values ('$business_id','$table_id','$date','$hour','$p_count','$name','$phone','$email')");
+			
+		header("Location : ".CONFIG_HOST.$url);
+		}
 }
 function Ajax_get_reserve() {
 	global $db, $smarty, $lang;
