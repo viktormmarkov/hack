@@ -29,8 +29,8 @@ $smarty->assign('user_info', $_SESSION['user_info']);
 $smarty->assign('action', $action);
 $smarty->assign('error', $error); 
 $smarty->assign('result', $result);
-
-$smarty->display('index.tpl');	
+$smarty->assign('business_id', $db->getrow("Select id from businesses where user_id=".$_SESSION['user_info']['id']." limit 1"));
+$smarty->display('index.tpl');
  
  function View_business() {
 	global $db, $smarty, $lang;
@@ -164,6 +164,7 @@ function Ajax_save_reserve() {
 	global $result, $error;
 	global $page, $action,$id;
 	$save=get_param("save");
+
 	if($save) {
 	$business_id=get_param("business_id");
 	$table_id=get_param("table_id");

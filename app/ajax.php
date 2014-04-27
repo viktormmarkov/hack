@@ -18,25 +18,39 @@ if ($action == "get_reserve") Ajax_get_reserve();
 if ($action == "get_tables") Ajax_get_tables();
 if ($action == "reservation") Load_Events_Reservation();
 if ($action == "get_free_tables") Ajax_get_free_tables();
+if ($action == "reserve_table") Ajax_reserve_table();
 
 function Ajax_get_free_tables() {
 	global $db, $smarty, $lang;
 	global $result, $error;
 	global $action;
-	
-	$table_id=get_param("table_id");
+	$business_id=get_param("business_id");
 	$date=get_param("date");
 	$hour=get_param("hour");
-	$where='';
-	if($date) $where.=' and date !="$date"';
-	if($hour) $where.=" and hour!='$hour'";
-	$reserves=$db->getall("Select * from reserve where table_id=$table_id $where");
-	for($i=0;$reserves[$i];$i++) 
-	$data[$i]=$db->getrow("Select * from tables where id=".$reserves[$i]["table_id"]);
-	
+	$where1='';
+	if($date) $where1.=' and date ="'.$date.'"';
+	if($hour) $where1.=' and hour ="'.$hour.'"';
+	$reserves_busy=$db->getall("Select * from reserve where business_id=$business_id $where1");
+	$busy='';
+	for($i=0;$reserves_busy[$i];$i++) {
+	$data[$i]=$db->getrow("Select * from tables where id=".$reserves_busy[$i]["table_id"]);
+	}
+		$data['sql']="Select * from reserve where business_id=$business_id $where1";
+
 	echo json_encode($data);
 	
-	
+	}
+function Ajax_reserve_table() {
+	global $db, $smarty, $lang;
+	global $result, $error;
+	global $action;
+	$table_id=get_param("table_id");
+	$reserve_id=get_param("reserve_id");
+	$db->execute("Update reserve set state=1 , table_id=$table_id where id=$reserve_id");
+	$date['success']=1;
+	echo json_encode($data);
+
+
 }
 function Load_Events_Reservation(){
 	global $db, $smarty, $lang;

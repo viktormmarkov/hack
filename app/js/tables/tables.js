@@ -102,6 +102,7 @@ $(document).ready(function () {
             stroke: "#F00"
         });
         $(element.node).attr('description', ' ');
+        $(element.node).attr('table_id', ' ');
         $(element.node).attr('id', '' + (Math.random() * 100000));
         console.log(element.attr('x'));
 
@@ -155,7 +156,7 @@ $(document).ready(function () {
         $("#d1").mouseup(function (e) {
             $('#d1').unbind('mousemove');
 
-            var BBox = rect.getBBox(); 
+            var BBox = rect.getBBox();
             if (BBox.width == 0 || BBox.height == 0) {
                 rect.remove();
             }
@@ -218,11 +219,13 @@ $(document).ready(function () {
 
         $("#table-container").remove();
         for (var i = 0; i < elems.length; i++) {
-            debugger;
             var BBox=elems[i].getBBox();
             elems[i].remove();
             DrawRectangleWithoutMove(BBox.x,BBox.y,BBox.width,BBox.height);
+
         }
+
+        window.location.href="?page=tables&id="+$('#hidden_id').val()+"";
     });
 
     (function(){
@@ -232,12 +235,120 @@ $(document).ready(function () {
             data: {action: 'get_tables',business_id: $('#hidden_id').val()},
             dataType: "json",
             success: function (data) {
-               for(var i=0;i<data.length;i++){
+                console.log(data);
+                for(var i=0;i<data.length;i++) {
+                    var rect;
+                    if ($("#change").length != 0) {
+                        rect = DrawRectangleWithoutMove(parseFloat(data[i].x1), parseFloat(data[i].y1), parseFloat(data[i].x2) - parseFloat(data[i].x1), parseFloat(data[i].y2) - parseFloat(data[i].y1));
+                    }
+                    else {
+                        rect = DrawRectangle(parseFloat(data[i].x1), parseFloat(data[i].y1), parseFloat(data[i].x2) - parseFloat(data[i].x1), parseFloat(data[i].y2) - parseFloat(data[i].y1));
+                    }
+                    rect.node.attributes[10].nodeValue = data[i].description;
+                    rect.node.attributes[11].nodeValue = data[i].id;
+                    elems.push(rect);
 
-                   var rect=DrawRectangle(parseFloat(data[i].x1),parseFloat(data[i].y1),parseFloat(data[i].x2)-parseFloat(data[i].x1),parseFloat(data[i].y2)-parseFloat(data[i].y1));
-                   rect.node.attributes[10].nodeValue=data.description;
                 }
             }
         });
+
+        if($(".notification").length==1){
+            var persons=$(".notification").children();
+            for(var i=3;i<persons.length;i++){
+                $(persons[i]).click(function(e){
+                    e.originalEvent.preventDefault();
+
+                    $(this).addClass("active-user");
+
+                    $("#filter-date").val($(this).attr("date"));
+                    $("#filter-hour").val($(this).attr("hour"));
+
+                  $.ajax({
+                       url: "ajax.php",
+                       type: "POST",
+                       data: {date:$(this).attr("date") , hour:$(this).attr("hour") , business_id: $('#hidden_id').val(), action: 'get_free_tables'},
+                        dataType: "json",
+                        success: function (data) {
+                            console.log(data);
+                            for (var i = 0; i < elems.length; i++) {
+                                elems[i].node.attributes[7].nodeValue = "#03ff03";
+                                for (index in data) {
+                                    if (data[index].id == elems[i].node.attributes[11].nodeValue) {
+                                        elems[i].node.attributes[7].nodeValue = "#ff0000";
+                                        break;
+                                    }
+                                }
+                                if (elems[i].node.attributes[7].nodeValue == "#03ff03") {
+                                    elems[i].click(function (e) {
+                                        e.originalEvent.preventDefault();
+                                        console.log( e.target.getAttribute("table_id"));
+                                        console.log($(".active-user")[0].getAttribute("reserve_id"));
+                                        $.ajax({
+                                            url: "ajax.php",
+                                            type: "POST",
+                                            data: {action: 'reserve_table',table_id: e.target.getAttribute("table_id"),reserve_id:$(".active-user")[0].getAttribute("reserve_id")},
+                                            dataType: "json",
+                                            success: function (data) {
+                                                window.location.href="?page=tables&id="+$('#hidden_id').val()+"";
+                                            }
+                                        });
+                                    });
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+        }
+
+
+        $("#filter_search").click(function () {
+
+            $.ajax({
+                url: "ajax.php",
+                type: "POST",
+                data: {date:$("#filter-date").val() , hour:$("#filter-hour").val() , business_id: $('#hidden_id').val(), action: 'get_free_tables'},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    for (var i = 0; i < elems.length; i++) {
+                        elems[i].node.attributes[7].nodeValue = "#03ff03";
+                        for (index in data) {
+                            if (data[index].id == elems[i].node.attributes[11].nodeValue) {
+                                elems[i].node.attributes[7].nodeValue = "#ff0000";
+                                break;
+                            }
+                        }
+                        console.log(elems[i]);
+                        elems[i].click(function (e) {
+
+                        console.log( e.target.getAttribute("table_id"));
+                        $.ajax({
+                        url: "ajax.php",
+                        type: "POST",
+                            data: {action:'reservation',
+                                table_id:1,
+                                business_id:5},
+                            dataType: "json",
+                        success: function (data) {
+                            $('#calendar').fullCalendar({
+                                editable: false,
+                                today: false
+                            }).css("display","block");
+
+                                    }
+                                });
+                            });
+
+                    }
+                }
+            });
+        });
+
+
+
+
+
     })();
 });
+
