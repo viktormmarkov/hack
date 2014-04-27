@@ -83,7 +83,13 @@
     
     </script>
 {/literal}
+<select class="input-sm style="position:asbolute" name="type"><br />
+       <option value="0">izberi</option>
+
+                                    {html_options options=$types selected=$user_info.type_id}
+</select>
 <div id="map-canvas" style="height: 330px"></div>
+
 <div class="jumbotron">
 	<h1>Make it big</h1>
     <p>Намерете най-добрите услуги близо до вас</p>

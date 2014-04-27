@@ -60,3 +60,7 @@ body {
 .my-extended {
     width: 100% !important;
 }
+
+.jumbotron {
+    background-color: #012b54;
+}
