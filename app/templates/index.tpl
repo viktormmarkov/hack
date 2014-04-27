@@ -51,7 +51,10 @@
                 </li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                  <li><a href="?page=logout">Logout</a></li>
+                    <li>
+                        <a href="#"><span class="glyphicon glyphicon-user"></span> Hello, {$user_info.username}</a>
+                    </li>
+                    <li><a href="?page=logout">Logout</a></li>
                 </ul>
          {else}
               <ul class="nav navbar-nav navbar-right">
