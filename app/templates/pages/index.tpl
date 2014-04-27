@@ -82,7 +82,7 @@
 
 				google.maps.event.addListener(marker,'click',(function (marker,object) {
 						return function () {
-							infoWindow.setContent("<div style='color:black; width:200px'>"+object.description+object.description+object.description+object.description+'</div><br><button class="btn btn-sm btn-block" onclick=reserve('+object.id+')>Reserve</button>');
+							infoWindow.setContent("<div style='color:black; width:200px'>"+object.description+object.description+object.description+object.description+'</div><br><button class="btn btn-sm btn-block" onclick=reserve('+object.id+')>Reserve</button><button style="display: block" class="btn btn-sm btn-block" onclick=view('+object.id+')>View</button>');
 							infoWindow.open(map, marker);
 							
 						}
@@ -103,6 +103,10 @@
 	function reserve(id) {
 		$('#business_id').val(id)
 		$('#modal').addClass("shown")
+	}
+
+	function view(id){
+	    window.location = "?page=view&id="+id;
 	}
 
    // google.maps.event.addDomListener(window, 'load', initialize);
