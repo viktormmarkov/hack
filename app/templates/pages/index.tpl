@@ -38,7 +38,6 @@
 	  }
 
     function initialize(position) {
-		console.log(position);
 		if(!position.coords) var coords=new google.maps.LatLng(42, 23);
 		else var coords =new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       var mapOptions = {
@@ -48,22 +47,24 @@
 
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
-		  get_marks(position);
+		  get_marks(coords);
     }
 
 
 	google.maps.event.addDomListener(window , 'load' ,initialize);
 	function get_marks(position)  {
 	  new google.maps.Marker({
-					position: new google.maps.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)),
+					position: position,
 					map: map,
 					icon: "img/food.png"
 				});	
+					console.log(position);
+
 	$.ajax({type: "POST",
 	url:'ajax.php',
 	data: {action:'get_business',
-	my_lat:position.coords.latitude,
-	my_lon:position.coords.longitude,
+	my_lat:position.A,
+	my_lon:position.k,
 	type:$('#type').val(),
 	all:$('#all:checked').val(),
 	name:$('#name').val()},
