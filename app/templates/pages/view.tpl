@@ -1,32 +1,22 @@
 {$info.name}<br />
 {$info.description}<br />
 
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<link href='js/fullcallendar/fullcalendar.css' rel="stylesheet" type="text/css">
+<link href='js/fullcallendar/fullcalendar.print.css' rel="stylesheet" type="text/css" media='print'>
+<script src='js/fullcallendar/fullcalendar.min.js'></script>
+
 {literal}
 <script>
-google.load("gdata", "1");
-google.setOnLoadCallback(getMyFeed);
-var myService;
-var feedUrl = "https://www.google.com/calendar/feeds/liz@gmail.com/public/full";
 
-function setupMyService() {
-  myService = new google.gdata.calendar.CalendarService('exampleCo-exampleApp-1');
-}
-
-function getMyFeed() {
-  setupMyService();
-  google.gdata.client.init(handleInitError)
-  myService.getEventsFeed(feedUrl, handleMyFeed, handleError);
-  
-}
-function handleMyFeed(myResultsFeedRoot) {
-  alert("This feed's title is: " + myResultsFeedRoot.feed.getTitle().getText());
-}
-
-function handleError(e) {
-  alert("There was an error!");
-  alert(e.cause ? e.cause.statusText : e.message);
-}
+$(function() {
+$('#calendar').fullCalendar({
+		editable: false,
+		firstDay:1,
+		allDayDefault: true,
+		events:  '/ajax.php?action=reservation&room_id='+$('#action').val()
+	});
+})
 </script>
 {/literal}
-<div id="exampleCo-exampleApp-1"></div>
+<input type="hidden" name="action" value="{$action}" id="action">
+<div id='calendar'></div>

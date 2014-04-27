@@ -27,27 +27,7 @@
 
 </script>
 {/literal}
-<div class="modal" id="login" style="display:none">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" onclick="close_login()" aria-hidden="true">×</button>
-                      <h4 class="modal-title">Вход</h4>
-                    </div>
-                    <form method="post">
-                    <div class="modal-body">
-                    <input type="text" placeholder="Username" name="username" />
-                    <input type="password" placeholder="Password" name="password" />
-                    <input type="hidden" value="login" name="page"  />
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      <input type="submit" name="login" value="Login" />
-                    </div>
-                    </form>                    
-					</div>
-                </div>
-              </div>
+{include file = "pages/login.tpl"}
 
 {literal}
 <script>
