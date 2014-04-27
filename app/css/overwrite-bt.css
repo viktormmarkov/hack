@@ -128,3 +128,10 @@ body {
 .shown {
     display:block;
 }
+
+.modal .btn {
+    background-color:#0074ea;
+}
+.modal .btn:hover {
+    background-color:#0081c2;
+}

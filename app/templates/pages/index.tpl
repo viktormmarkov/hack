@@ -7,7 +7,7 @@
                     <h4 class="modal-title">Резервация</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group"><input class="input-sm my-extended" type="text" name="date" class="datepicker" placeholder="date"></div>
+                    <div class="form-group"><input class="input-sm my-extended datepicker" type="text" name="date" placeholder="date"></div>
                     <div class="form-group"><input class="input-sm my-extended" type="text" name="hour" class="" placeholder="hour"></div>
                     <div class="form-group"><input class="input-sm my-extended" type="text" name="p_count" class="" placeholder="people count"></div>
                     <div class="form-group"><input class="input-sm my-extended" type="text" name="name" class="" placeholder="name"></div>
@@ -83,7 +83,7 @@
 
 				google.maps.event.addListener(marker,'click',(function (marker,object) {
 						return function () {
-							infoWindow.setContent("<div style='color:black; width:200px'>"+object.description+object.description+object.description+object.description+'</div><br><button onclick=reserve('+object.id+')>Reserve</button>');
+							infoWindow.setContent("<div style='color:black; width:200px'>"+object.description+object.description+object.description+object.description+'</div><br><button class="btn btn-sm btn-block" onclick=reserve('+object.id+')>Reserve</button>');
 							infoWindow.open(map, marker);
 							
 						}
