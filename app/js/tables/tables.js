@@ -302,6 +302,8 @@ $(document).ready(function () {
                                 }
                                 if (elems[i].node.attributes[7].nodeValue == "#03ff03") {
                                     elems[i].click(function (e) {
+
+                                        debugger;
                                         console.log( e.target.getAttribute("table_id"));
                                         console.log($(".active-user")[0].getAttribute("reserve_id"));
                                         $.ajax({
@@ -324,7 +326,7 @@ $(document).ready(function () {
 
 
         $("#filter_search").click(function () {
-            $("#calendar_modal").remove();
+            //$("#calendar_modal").remove();
             $.ajax({
                 url: "ajax.php",
                 type: "POST",
