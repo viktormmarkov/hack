@@ -163,6 +163,7 @@ function Ajax_save_reserve() {
 	global $result, $error;
 	global $page, $action,$id;
 	$save=get_param("save");
+
 	if($save) {
 	$business_id=get_param("business_id");
 	$table_id=get_param("table_id");
