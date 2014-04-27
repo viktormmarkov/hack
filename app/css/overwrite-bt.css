@@ -83,10 +83,12 @@ body {
 .shown {
     display:block;
 }
+#register .modal-dialog,
 #login .modal-dialog {
     width: 300px;
     height: 400px;
 }
+#register .btn,
 #login .btn {
     color: #ffffff;
 }
@@ -94,6 +96,7 @@ body {
     width: 300px;
     height: 400px;
 }
+#register .modal-content,
 #login .modal-content,
 #reservation .modal-content{
     width: 300px;
