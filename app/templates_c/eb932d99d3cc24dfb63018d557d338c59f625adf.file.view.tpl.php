@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2014-04-27 09:23:37
+<?php /* Smarty version Smarty-3.1.16, created on 2014-04-27 11:04:53
          compiled from ".\templates\pages\view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:530535c96e75c8053-68548744%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'eb932d99d3cc24dfb63018d557d338c59f625adf' => 
     array (
       0 => '.\\templates\\pages\\view.tpl',
-      1 => 1398583416,
+      1 => 1398589490,
       2 => 'file',
     ),
   ),
@@ -29,21 +29,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <?php echo $_smarty_tpl->tpl_vars['info']->value['description'];?>
 <br />
 
-<link href='js/fullcallendar/fullcalendar.css' rel="stylesheet" type="text/css">
-<link href='js/fullcallendar/fullcalendar.print.css' rel="stylesheet" type="text/css" media='print'>
-<script src='js/fullcallendar/fullcalendar.min.js'></script>
 
 
 <script>
-
-$(function() {
-$('#calendar').fullCalendar({
-		editable: false,
-		firstDay:1,
-		allDayDefault: true,
-		events:  '/ajax.php?action=reservation&room_id='+$('#action').val()
+function set_calemdar(events) {
+		$('#calendar').fullCalendar({
+			editable: false,
+			today: false,
+			events: events
+		});
+	
+}
+	$(document).ready(function() {
+	
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		var events;
+			$.ajax({type: "POST",
+			url:'ajax.php',
+			data: {action:'reservation',
+			table_id:1,
+			business_id:5},
+			dataType: "json",
+			success: function(data){
+				set_calemdar(data);
+			}
+			});
+		
 	});
-})
+
+
 </script>
 
 <input type="hidden" name="action" value="<?php echo $_smarty_tpl->tpl_vars['action']->value;?>
