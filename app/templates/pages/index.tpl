@@ -27,7 +27,7 @@
 
     function initialize(position) {
 		console.log(position);
-		if(!position.coords) var coords=new google.maps.LatLng(42, 23);
+		if(!position) var coords=new google.maps.LatLng(42, 23);
 		else var coords =new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       var mapOptions = {
         zoom: 8,
@@ -99,16 +99,22 @@
     
     </script>
 {/literal}
-<input class="name-search input-sm" type="text" id="name"/>
-<select class="input-sm type-search" id="type" name="type"><br />
-<input class="name-search" type="text" id="name" onchange="search()"/>
-<select class="input-sm type-search" id="type" name="type"  onchange="search()">
-       <option value="0">Избери</option>
-       {html_options options=$types selected=$user_info.type_id}
-</select>
-<input type="checkbox" id="all" value="1"  onchange="search()"/> Всички
+<form role="form" class="my-inline-form form-inline">
+    <div class="form-group">
+        <input class="name-search my-input input-sm" type="text" id="name" onchange="search()"/>
+    </div>
+    <div class="form-group">
+        <select class="input-sm type-search" id="type" name="type"  onchange="search()">
+               <option value="0">Избери</option>
+               {html_options options=$types selected=$user_info.type_id}
+        </select>
+    </div>
+    <div class="form-group">
+        <div class="checkbox btn">
+        <label><input type="checkbox" id="all" value="1"  onchange="search()"/>Заведения около мен</label></div>
+    </div>
+</form>
 <div id="map-canvas" style="height: 350px"></div>
-
 <div class="jumbotron">
 	<h1>Make it big</h1>
     <p>Намерете най-добрите услуги близо до вас</p>
