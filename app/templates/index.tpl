@@ -3,7 +3,7 @@
 <head>
     {include file='head.tpl'}
 </head>
-<body>
+<body onLoad="getLocation()">
 <div class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">

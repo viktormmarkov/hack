@@ -16,28 +16,40 @@
 {literal}
 <script>
     var map;
+	
+	function getLocation()
+	  {
+	  if (navigator.geolocation)
+		{
+		navigator.geolocation.getCurrentPosition(initialize);
+		}
+	  }
 
-    function initialize() {
+    function initialize(position) {
       var mapOptions = {
         zoom: 8,
-        center: new google.maps.LatLng(42.397, 23.644)
+        center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
       };
+
       map = new google.maps.Map(document.getElementById('map-canvas'),
           mapOptions);
-		  get_marks();
+		  get_marks(position);
     }
 
 
-	function get_marks()  {
+
+	function get_marks(position)  {
+	  new google.maps.Marker({
+					position: new google.maps.LatLng(parseFloat(position.coords.latitude), parseFloat(position.coords.longitude)),
+					map: map,
+					icon: "img/food.png"
+				});	
 	$.ajax({type: "POST",
 	url:'ajax.php',
 	data: {action:'get_business'},
 	dataType: "json",
 	success: function(data){
-	    console.log(data);
 		for(var i = 0, object; object = data[i]; i++){
-			console.log(object);
-			console.log(object.lat, object.lon);
 			var myLatlng = new google.maps.LatLng(parseFloat(object.lat),parseFloat(object.lon));
 				var infoWindow = new google.maps.InfoWindow();
 				var marker = new google.maps.Marker({
@@ -66,7 +78,7 @@
 		$('#reservation').removeClass("hide")
 	}
 
-    google.maps.event.addDomListener(window, 'load', initialize);
+   // google.maps.event.addDomListener(window, 'load', initialize);
 
     
     </script>
