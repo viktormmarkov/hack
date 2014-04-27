@@ -22,6 +22,7 @@ if ($page == "view") View_business();
 
 $smarty->assign('notifications', $db->getall("Select reserve.* from reserve,businesses,users where business_id=businesses.id and users.id=businesses.user_id and state=0 and users.id=".$_SESSION['user_info']['id']));
 $smarty->assign('types', $db->getassoc("Select id,name from types"));
+$smarty->assign('business_id', $db->getone("Select id from business where user_id=.".$_SESSION['user_info']['id']));
 $smarty->assign('id', $id);
 $smarty->assign('page', $page);
 $smarty->assign('user_info', $_SESSION['user_info']);
